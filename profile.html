@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль игрока | ARBYZ CS2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>ARBYZ CS2 Server</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="rules.html">Правила</a>
+      <a href="shop.html">Магазин</a>
+      <a href="profile.html">Профиль</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="search">
+      <h2>Профиль игрока</h2>
+      <p>Введите ник или SteamID игрока:</p>
+      <input type="text" id="player-input" placeholder="Например: Player_1337 или 76561198000000000">
+      <button onclick="findPlayer()">Найти</button>
+    </section>
+
+    <section id="profile" style="display:none;">
+      <div class="card" id="profile-card">
+        <h3 id="p-name">—</h3>
+        <p class="steam-id">SteamID: <span id="p-steamid">—</span></p>
+        <ul>
+          <li>Наиграно часов: <strong id="p-hours">—</strong></li>
+          <li>Убийств: <strong id="p-kills">—</strong></li>
+          <li>Смертей: <strong id="p-deaths">—</strong></li>
+          <li>K/D: <strong id="p-kd">—</strong></li>
+          <li>Мутов: <strong id="p-mutes">—</strong></li>
+          <li>Банов: <strong id="p-bans">—</strong></li>
+          <li>Друзей на сервере: <strong id="p-friends">—</strong></li>
+        </ul>
+        <p id="p-status"></p>
+      </div>
+    </section>
+
+    <section id="not-found" style="display:none;">
+      <p class="note">Игрок не найден. Проверьте ник или SteamID.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 ARBYZ CS2 Server. Все права защищены.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
