@@ -1,22 +1,22 @@
 [
   {
-    "name": "Player_1337",
-    "steamid": "76561198000000000",
-    "hours": 124.5,
-    "kills": 3201,
-    "deaths": 1810,
-    "mutes": 2,
+    "name": "abyss175",
+    "steamid": "76561199783123219",
+    "hours": 0,
+    "kills": 0,
+    "deaths": 0,
+    "mutes": 0,
     "bans": 0,
-    "friends": ["Kenny_", "zloy_ded"]
+    "friends": ["Betmen",""]
   },
   {
-    "name": "Kenny_",
-    "steamid": "76561198000000001",
-    "hours": 87.0,
-    "kills": 1544,
-    "deaths": 1200,
+    "name": "Betmen",
+    "steamid": "76561198723201507",
+    "hours": 0,
+    "kills": 0,
+    "deaths": 0,
     "mutes": 0,
-    "bans": 1,
-    "friends": ["Player_1337"]
+    "bans": 0,
+    "friends": ["abyss175"]
   }
 ]
