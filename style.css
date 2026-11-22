@@ -96,4 +96,22 @@ footer {
   background-color: #0f1114;
   margin-top: 3rem;
   color: #666;
+
+  #search input {
+  background: #000;
+  color: #fff;
+  border: 1px solid #3a3f45;
+  border-radius: 4px;
+  padding: 8px 12px;
+  width: 300px;
+  font-size: 1rem;
+}
+
+#search button {
+  width: auto;
+  padding: 8px 20px;
+  margin-left: 8px;
+}
+
+.steam-id { color: #888; font-family: monospace; font-size: 0.9rem; }
 }
