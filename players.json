@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Player_1337",
+    "steamid": "76561198000000000",
+    "hours": 124.5,
+    "kills": 3201,
+    "deaths": 1810,
+    "mutes": 2,
+    "bans": 0,
+    "friends": ["Kenny_", "zloy_ded"]
+  },
+  {
+    "name": "Kenny_",
+    "steamid": "76561198000000001",
+    "hours": 87.0,
+    "kills": 1544,
+    "deaths": 1200,
+    "mutes": 0,
+    "bans": 1,
+    "friends": ["Player_1337"]
+  }
+]
