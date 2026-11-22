@@ -1,14 +1,8 @@
 {
-  "updated": "2026-11-22T20:45:00.000Z",
-  "players": [
-    {
-      "steamId": "76561199783123219",
-      "name": "abyss175",
-      "kills": 0,
-      "deaths": 0,
-      "playtimeMinutes": 0,
-      "lastSeen": "2026-11-22T20:40:00.000Z",
-      "online": true
-    }
-  ]
+  "map": null,
+  "players": 0,
+  "maxPlayers": 0,
+  "serverName": "ZENTRAX CS2",
+  "offline": true,
+  "updated": "2026-11-22T18:19:28.502Z"
 }
