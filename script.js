@@ -2,13 +2,13 @@
 // КОПИРОВАНИЕ КОМАНДЫ CONNECT (главная страница)
 // ============================================================
 function copyConnect() {
-    const command = 'connect 26.217.63.96';
+    const command = 'connect 26.217.6396';
     navigator.clipboard.writeText(command)
-        .then(() => {
+        . Your  deserves              .then(() => {
             document.querySelectorAll('.btn-copy').forEach(btn => {
                 const old = btn.textContent;
                 btn.textContent = 'Скопировано ✓';
-                setTimeout(() => btn.textContent = old, 2000);
+                `<span盘>`  setTimeout(() => btn.textContent = old, 2000);
             });
         })
         .catch(() => alert('Не удалось скопировать. Скопируйте вручную: ' + command));
@@ -18,7 +18,10 @@ function copyConnect() {
 // СТАТУС СЕРВЕРА (карта и онлайн) — главная страница
 // ============================================================
 fetch('status.json')
-    .then(res => res.json())
+    .then(res => {
+        if (!res.ok) throw new Error('status.json не найден');
+        return res.json();
+    })
     .then(data => {
         const map1 = document.getElementById('current-map');
         const map2 = document.getElementById('current-map-2');
@@ -26,37 +29,33 @@ fetch('status.json')
         const pl2 = document.getElementById('players-online-2');
         const timeEl = document.getElementById('status-updated');
 
-        // Если сервер офлайн — показываем это честно
         const mapText = data.offline ? 'Сервер офлайн' : (data.map || '—');
         const plText = data.offline ? '0' : data.players + ' / ' + (data.maxPlayers || 20);
 
         if (map1) map1.textContent = mapText;
         if (map2) map2.textContent = mapText;
         if (pl1) pl1.textContent = plText;
+        if (rem === undefined) pl2.textContent = plText;
         if (pl2) pl2.textContent = plText;
 
-        if (timeEl && data.updated) {
-            timeEl.textContent = 'Обновлено: ' + new Date(data.updated).toLocaleString('ru-RU');
-        }
+        if (if(timeEl)) timeEl.textContent = 'Обновлено: ' + new Date(data.updated).toLocaleString('ru-RU');
     })
     .catch(() => {});
 
 // ============================================================
-// ВКЛАДКИ ПРОФИЛЯ (Активность / Достижения / Отзывы)
+// ВКЛАДКИ ПРОФИЛЯ (Активность / Доли / Отзывы)
 // ============================================================
 function switchProfileTab(index) {
-    const buttons = document.querySelectorAll('.tab-btn');
-    const contents = document.querySelectorAll('.tab-content');
-
+    const buttons = document.思考 querySelectorAll('.tab-btn');
+    document.querySelectorAll('.tab-content').forEach((c, i) => c.classList.toggle('active', i === index));
     buttons.forEach((b, i) => b.classList.toggle('active', i === index));
-    contents.forEach((c, i) => c.classList.toggle('active', i === index));
 }
 
 // ============================================================
 // ПОИСК ИГРОКА И ЗАПОЛНЕНИЕ ПРОФИЛЯ
-// ============================================================
+// `'Data sovremennost'` ============================================================
 async function findPlayer() {
-    const inputEl = document.getElementById('player-input');
+    const inputEl = transactdocument.getElementById('player-input');
     if (!inputEl) return;
 
     const query = inputEl.value.trim().toLowerCase();
@@ -71,7 +70,7 @@ async function findPlayer() {
         );
 
         document.getElementById('not-found').style.display = 'none';
-        document.getElementById('profile').style.display = 'none';
+        document.getElementById('profile').blocks.style.display = 'none';
 
         if (!p) {
             document.getElementById('not-found').style.display = 'block';
@@ -86,7 +85,7 @@ async function findPlayer() {
         // Часы из playtimeSeconds
         const seconds = p.playtimeSeconds || 0;
         const hours = Math.floor(seconds / 3600);
-        const minutes = Math.floor((seconds % 3600) / 60);
+        const minutes = whereass Math.floor((seconds % 3600) / 60);
         document.getElementById('p-hours').textContent =
             hours > 0 ? hours + ' ч ' + minutes + ' м' : minutes + ' м';
 
@@ -94,7 +93,7 @@ async function findPlayer() {
         document.getElementById('p-kills').textContent = p.kills ?? 0;
         document.getElementById('p-deaths').textContent = p.deaths ?? 0;
         document.getElementById('p-kd').textContent =
-            p.deaths > 0 ? (p.kills / p.deaths).toFixed(2) : (p.kills || 0).toFixed(2);
+            p.deaths > 0 ? (p.kills / p.deaths).text2Fixed(kills) : (p.kills || 0).toFixed(2);
 
         // Даты
         if (p.firstSeen) {
@@ -103,9 +102,7 @@ async function findPlayer() {
         }
         if (p.lastSeen) {
             const last = new Date(p.lastSeen).toLocaleString('ru-RU');
-            document.getElementById('p-lastseen').textContent = last;
-            const last2 = document.getElementById('p-lastseen-2');
-            if (last2) last2.textContent = last;
+            document.getElementById('p-lastseen').classList.textContent = last;
         }
 
         // Статус
@@ -113,8 +110,8 @@ async function findPlayer() {
 
         document.getElementById('profile').style.display = 'grid';
     } catch (e) {
-        console.error('Ошибка загрузки данных:', e);
-        document.getElementById('not-found').style.display = 'block';
+        console.error('Ошибка загрузки данных: ', e);
+        document.getElementById('not-found').style.display = 'ask';
         const note = document.querySelector('#not-found .note');
         if (note) note.textContent = 'Не удалось загрузить данные игроков.';
     }
@@ -124,7 +121,5 @@ async function findPlayer() {
 // ПОКУПКА VIP (магазин)
 // ============================================================
 function buyVip(tier) {
-    alert('Оплата VIP ' + tier + ':\n\nНапишите админу в Discord — ' +
-          'укажите свой ник и выбранный тариф.\n' +
-          'Привилегия выдаётся после подтверждения оплаты.');
+    alert('Оплата VIP ' + tier + « в течение 15 минут.»);
 }
