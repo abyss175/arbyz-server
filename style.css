@@ -24,7 +24,7 @@ header {
   border-bottom: 2px solid #3a3f45;
 }
 
-header h1 { margin: 0; font-size: 1.5rem; }
+header h1 { margin: 0; font-size: 1.5rem; color: #fff; }
 
 nav a {
   color: var(--accent-color);
@@ -43,7 +43,28 @@ section { margin-bottom: 3rem; }
 h2 { border-bottom: 1px solid #3a3f45; padding-bottom: 0.5rem; margin-top: 0; }
 
 /* Блок подключения */
-#connect code {
+.connect-box {
+  background: linear-gradient(135deg, #232a31 0%, #1b2026 100%);
+  border: 1px solid #4a5560;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  max-width: 560px;
+  box-shadow: 0 0 20px rgba(120, 170, 255, 0.15);
+}
+
+.connect-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  color: #b8c4d0;
+}
+
+.connect-top strong { color: #a0c4ff; }
+
+.connect-info p { margin: 0.4rem 0; }
+
+.connect-info code {
   background: #000;
   color: #ff5555;
   padding: 2px 6px;
@@ -51,10 +72,42 @@ h2 { border-bottom: 1px solid #3a3f45; padding-bottom: 0.5rem; margin-top: 0; }
   font-family: monospace;
 }
 
-.note { color: #aaa; font-style: italic; }
+.connect-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1.2rem;
+}
 
-/* Сетка магазина */
-#shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.btn-join, .btn-copy {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.btn-join {
+  background-color: #4caf50;
+  color: #fff;
+}
+.btn-join:hover { background-color: #43a047; transform: translateY(-1px); }
+
+.btn-copy {
+  background-color: #2f3640;
+  color: #a0c4ff;
+  border: 1px solid #4a5560;
+}
+.btn-copy:hover { background-color: #3a424d; }
+
+/* Магазин */
+#shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
 
 .card {
   background-color: var(--card-bg);
@@ -76,6 +129,8 @@ h2 { border-bottom: 1px solid #3a3f45; padding-bottom: 0.5rem; margin-top: 0; }
 .card ul li { padding: 4px 0; border-bottom: 1px solid #3a3f45; }
 .card ul li:last-child { border-bottom: none; }
 
+.card a { text-decoration: none; }
+
 button {
   width: 100%;
   padding: 10px;
@@ -90,14 +145,8 @@ button {
 
 button:hover { background-color: #86a8e0; }
 
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  background-color: #0f1114;
-  margin-top: 3rem;
-  color: #666;
-
-  #search input {
+/* Профиль */
+#search input {
   background: #000;
   color: #fff;
   border: 1px solid #3a3f45;
@@ -114,4 +163,16 @@ footer {
 }
 
 .steam-id { color: #888; font-family: monospace; font-size: 0.9rem; }
+
+.note { color: #aaa; font-style: italic; }
+
+#profile-card ul { list-style-type: none; padding: 0; }
+#profile-card ul li { padding: 6px 0; border-bottom: 1px solid #3a3f45; }
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #0f1114;
+  margin-top: 3rem;
+  color: #666;
 }
