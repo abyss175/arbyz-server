@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Правила сервера | ZENTRAX</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTRAX — Правила</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>ZENTRAX</h1>
-    <nav>
-      <a href="index.html">Главная</a>
-      <a href="rules.html">Правила</a>
-      <a href="shop.html">Магазин</a>
-      <a href="profile.html">Профиль</a>
-    </nav>
-  </header>
 
-  <main>
-    <section id="rules-list">
-      <h2>Правила сервера</h2>
+<header class="site-header">
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-icon">Z</div>
+            <span class="logo-text">ZENTRAX</span>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Главная</a>
+            <a href="rules.html" class="active">Правила</a>
+            <a href="shop.html">Магазин</a>
+            <a href="profile.html">Профиль</a>
+        </nav>
+    </div>
+</header>
 
-      <article>
-        <h3>1. Токсичное поведение</h3>
-        <p>Оскорбления игроков запрещены. Шутки допустимы, но если человеку обидно — мут на 1 час.</p>
-      </article>
+<main class="page-container">
 
-      <article>
-        <h3>2. Адекватное поведение в чате и войсе</h3>
-        <p>Шум, крики и флуд в чате и войсе запрещены.</p>
-        <p>Запрещён спам командами, макросами и повторяющимися сообщениями.</p>
-        <p><strong>Наказание:</strong> мут на 1 час.</p>
-      </article>
+    <div class="shop-header">
+        <h1>Правила сервера</h1>
+        <p>Нарушение правил ведёт к муту или бану.</p>
+    </div>
 
-      <article>
-        <h3>3. Запрет на читы и скрипты</h3>
-        <p>Использование любых читов строго запрещено.</p>
-        <p><strong>Наказание:</strong> бан на 7 дней.</p>
-      </article>
+    <div class="card">
+        <h3 class="card-title">⛔ Запрещено</h3>
+        <ul class="rules-list">
+            <li>Читы, софты и макросы — <b>бан навсегда</b></li>
+            <li>Оскорбление игроков и админов — мут до 24 ч</li>
+            <li>Спам в чате и микрофоне — мут до 1 ч</li>
+            <li>Тимкиллинг и помехи своим — кик / бан до 1 дня</li>
+            <li>Реклама других серверов — бан навсегда</li>
+        </ul>
+    </div>
 
-      <article>
-        <h3>4. Мониторинг (раскрытие местоположения)</h3>
-        <p>Точное местоположение игрока запрещено раскрывать.</p>
-        <p><strong>Наказание:</strong> мут на 1 час.</p>
-      </article>
-    </section>
-  </main>
+    <div class="card">
+        <h3 class="card-title">✅ Разрешено</h3>
+        <ul class="rules-list">
+            <li>Играть с русским чатом</li>
+            <li>Использовать любые тактики внутри игры</li>
+            <li>Дружественные споры в голосовом канале</li>
+            <li>Обращаться к админам за помощью</li>
+        </ul>
+    </div>
 
-  <footer>
-    <p>&copy; 2026 ZENTRAX CS2 Server. Все права защищены.</p>
-  </footer>
+</main>
+
+<footer class="site-footer">
+    © 2026 ZENTRAX CS2 Server. Все права защищены.
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
