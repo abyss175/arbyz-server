@@ -15,7 +15,7 @@ function copyConnect() {
 }
 
 // ============================================================
-// ПОДГРУЗКА КАРТЫ И ОНЛАЙНА (главная страница)
+// СТАТУС СЕРВЕРА (карта и онлайн) — главная страница
 // ============================================================
 fetch('status.json')
     .then(res => res.json())
@@ -24,13 +24,19 @@ fetch('status.json')
         const map2 = document.getElementById('current-map-2');
         const pl1 = document.getElementById('players-online');
         const pl2 = document.getElementById('players-online-2');
-        if (data.map) {
-            if (map1) map1.textContent = data.map;
-            if (map2) map2.textContent = data.map;
-        }
-        if (typeof data.players === 'number') {
-            if (pl1) pl1.textContent = data.players + ' / 20';
-            if (pl2) pl2.textContent = data.players + ' / 20';
+        const timeEl = document.getElementById('status-updated');
+
+        // Если сервер офлайн — показываем это честно
+        const mapText = data.offline ? 'Сервер офлайн' : (data.map || '—');
+        const plText = data.offline ? '0' : data.players + ' / ' + (data.maxPlayers || 20);
+
+        if (map1) map1.textContent = mapText;
+        if (map2) map2.textContent = mapText;
+        if (pl1) pl1.textContent = plText;
+        if (pl2) pl2.textContent = plText;
+
+        if (timeEl && data.updated) {
+            timeEl.textContent = 'Обновлено: ' + new Date(data.updated).toLocaleString('ru-RU');
         }
     })
     .catch(() => {});
