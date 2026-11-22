@@ -47,7 +47,7 @@ async function findPlayer() {
 
 // ===== Копирование команды connect (главная страница) =====
 function copyConnect() {
-  const command = 'connect IP_АДРЕС:ПОРТ';
+  const command = 'connect connect 26.217.63.96';
   navigator.clipboard.writeText(command)
     .then(() => {
       const btn = document.querySelector('.btn-copy');
