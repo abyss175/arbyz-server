@@ -1,56 +1,121 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Профиль игрока | ZENTRAX</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>ZENTRAX</h1>
-    <nav>
-      <a href="index.html">Главная</a>
-      <a href="rules.html">Правила</a>
-      <a href="shop.html">Магазин</a>
-      <a href="profile.html">Профиль</a>
-    </nav>
-  </header>
+<!-- Контейнер страницы -->
+<div class="zentrax-page">
+    
+    <!-- Боковая панель (слева) -->
+    <aside class="profile-sidebar">
+        <div class="avatar-wrapper">
+            <div class="avatar-placeholder"></div>
+            <div class="status-dot"></div>
+        </div>
+        <h3 class="player-name-small">Player_1337</h3>
+        <span class="player-role">Пользователь</span>
 
-  <main>
-    <section id="search">
-      <h2>Профиль игрока</h2>
-      <p>Введите ник или SteamID игрока:</p>
-      <input type="text" id="player-input" placeholder="Например: Player_1337 или 76561198000000000">
-      <button onclick="findPlayer()">Найти</button>
-    </section>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-icon">⏱</span>
+                <div>
+                    <span class="stat-val">24</span>
+                    <span class="stat-label">Онлайн</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🎮</span>
+                <div>
+                    <span class="stat-val">87</span>
+                    <span class="stat-label">Игр сыграно</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🏆</span>
+                <div>
+                    <span class="stat-val">61</span>
+                    <span class="stat-label">Побед</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⭐</span>
+                <div>
+                    <span class="stat-val">1.47</span>
+                    <span class="stat-label">КД</span>
+                </div>
+            </div>
+        </div>
 
-    <section id="profile" style="display:none;">
-      <div class="card" id="profile-card">
-        <h3 id="p-name">—</h3>
-        <p class="steam-id">SteamID: <span id="p-steamid">—</span></p>
-        <ul>
-          <li>Наиграно часов: <strong id="p-hours">—</strong></li>
-          <li>Убийств: <strong id="p-kills">—</strong></li>
-          <li>Смертей: <strong id="p-deaths">—</strong></li>
-          <li>K/D: <strong id="p-kd">—</strong></li>
-          <li>Мутов: <strong id="p-mutes">—</strong></li>
-          <li>Банов: <strong id="p-bans">—</strong></li>
-          <li>Друзей на сервере: <strong id="p-friends">—</strong></li>
-        </ul>
-        <p id="p-status"></p>
-      </div>
-    </section>
+        <button class="edit-btn">
+            <span>✎</span> Редактировать профиль
+        </button>
+    </aside>
 
-    <section id="not-found" style="display:none;">
-      <p class="note">Игрок не найден. Проверьте ник или SteamID.</p>
-    </section>
-  </main>
+    <!-- Основной контент (справа) -->
+    <main class="profile-main">
+        <!-- Приветственный баннер -->
+        <header class="profile-header">
+            <div class="header-left">
+                <span class="shield-icon">🛡️</span>
+                <h1>Player_1337</h1>
+            </div>
+            <p class="welcome-text">Добро пожаловать на ZENTRAX!</p>
+        </header>
 
-  <footer>
-    <p>&copy; 2026 ZENTRAX CS2 Server. Все права защищены.</p>
-  </footer>
+        <!-- Блок информации -->
+        <section class="info-card">
+            <h3>Информация о пользователе</h3>
+            <div class="info-grid">
+                <div class="info-row">
+                    <span class="info-label">SteamID:</span>
+                    <span class="info-value">76561198000000000</span>
+                    <span class="copy-icon">📋</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Дата регистрации:</span>
+                    <span class="info-value">22.11.2025</span>
+                </div>
+                <div class="info-row status-row">
+                    <span class="info-label">Статус:</span>
+                    <span class="status-badge online">Онлайн</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Роль:</span>
+                    <span class="role-badge">Пользователь</span>
+                </div>
+            </div>
+        </section>
 
-  <script src="script.js"></script>
-</body>
-</html>
+        <!-- Вкладки (Активность, Достижения, Отзывы) -->
+        <div class="tabs-container">
+            <button class="tab-btn active">Активность</button>
+            <button class="tab-btn">Достижения</button>
+            <button class="tab-btn">Отзывы</button>
+        </div>
+
+        <!-- Контент вкладки (пример для Активности) -->
+        <section class="tab-content active">
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon">🛒</div>
+                    <div class="activity-details">
+                        <h4>Покупка VIP Bronze</h4>
+                        <span class="activity-time">Сегодня, 16:24</span>
+                    </div>
+                    <span class="activity-price">+50 ₽</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">💬</div>
+                    <div class="activity-details">
+                        <h4>Сообщение в чате</h4>
+                        <span class="activity-time">Сегодня, 15:47</span>
+                    </div>
+                    <span class="activity-price">-</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🎮</div>
+                    <div class="activity-details">
+                        <h4>Игра на сервере</h4>
+                        <span class="activity-time">Сегодня, 14:32</span>
+                    </div>
+                    <span class="activity-price">-</span>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
