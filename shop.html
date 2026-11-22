@@ -1,55 +1,133 @@
-<div class="zentrax-page zentrax-shop">
-    <header class="shop-header">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTRAX — Магазин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-icon">Z</div>
+            <span class="logo-text">ZENTRAX</span>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Главная</a>
+            <a href="rules.html">Правила</a>
+            <a href="shop.html" class="active">Магазин</a>
+            <a href="profile.html">Профиль</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-container">
+    <div class="shop-header">
         <h1>Магазин привилегий</h1>
         <p>Выберите ранг, чтобы улучшить свой игровой опыт.</p>
-    </header>
+    </div>
 
     <div class="cards-container">
+
         <!-- VIP Bronze -->
-        <div class="card card-bronze">
+        <div class="card tier-card card-bronze">
             <div class="card-header">
                 <span class="rank-badge">VIP Bronze</span>
-                <span class="price">50 ₽</span>
+                <span class="price">9 ₽ <span class="price-period">/ 7 дней</span></span>
             </div>
-            <div class="card-body">
-                <ul>
-                    <li>✅ Доступ к VIP-чату</li>
-                    <li>✅ Ускоренный опыт</li>
-                </ul>
-            </div>
-            <button class="btn-buy">Купить</button>
-        </div>
-
-        <!-- VIP Silver -->
-        <div class="card card-silver">
-            <div class="card-header">
-                <span class="rank-badge">VIP Silver</span>
-                <span class="price">150 ₽</span>
-            </div>
-            <div class="card-body">
-                <ul>
-                    <li>✅ Всё из Bronze</li>
-                    <li>✅ Спец-команда /skin</li>
-                    <li>✅ Цвет ника в чате</li>
-                </ul>
-            </div>
-            <button class="btn-buy">Купить</button>
+            <ul class="card-body">
+                <li>Ускоренный опыт</li>
+                <li>Доступ к VIP-чату</li>
+                <li><b>105 HP</b></li>
+            </ul>
+            <button class="btn-buy" onclick="buyVip('Bronze')">Купить</button>
         </div>
 
         <!-- VIP Gold -->
-        <div class="card card-gold">
+        <div class="card tier-card card-gold">
             <div class="card-header">
                 <span class="rank-badge">VIP Gold</span>
-                <span class="price">300 ₽</span>
+                <span class="price">29 ₽ <span class="price-period">/ 7 дней · 49 ₽ / 30 дней</span></span>
             </div>
-            <div class="card-body">
-                <ul>
-                    <li>✅ Всё из Silver</li>
-                    <li>✅ Двойной опыт 24/7</li>
-                    <li>✅ Доступ к закрытым режимам</li>
-                </ul>
-            </div>
-            <button class="btn-buy">Купить</button>
+            <ul class="card-body">
+                <li><b>x1.05 скорость</b></li>
+                <li><b>110 HP</b></li>
+                <li><b>50 брони</b></li>
+                <li>Шприц — 1 шт.</li>
+            </ul>
+            <button class="btn-buy" onclick="buyVip('Gold')">Купить</button>
         </div>
+
+        <!-- VIP Diamond -->
+        <div class="card tier-card card-diamond">
+            <div class="card-header">
+                <span class="rank-badge">VIP Diamond</span>
+                <span class="price">79 ₽ <span class="price-period">/ 7 дней · 119 ₽ / 30 дней · 199 ₽ навсегда</span></span>
+            </div>
+            <ul class="card-body">
+                <li><b>x1.1 скорость</b></li>
+                <li><b>115 HP</b></li>
+                <li><b>100 брони</b></li>
+                <li>Шприцы — 2 шт.</li>
+                <li>Респавн — 1</li>
+                <li>Вампиризм — 5</li>
+            </ul>
+            <button class="btn-buy" onclick="buyVip('Diamond')">Купить</button>
+        </div>
+
+        <!-- VIP Platinum -->
+        <div class="card tier-card card-platinum">
+            <div class="card-header">
+                <span class="rank-badge">VIP Platinum</span>
+                <span class="price">129 ₽ <span class="price-period">/ 7 дней · 169 ₽ / 30 дней · 249 ₽ навсегда</span></span>
+            </div>
+            <ul class="card-body">
+                <li><b>x1.15 скорость</b></li>
+                <li><b>125 HP</b></li>
+                <li><b>150 брони</b></li>
+                <li>Шприцы — 2 шт.</li>
+                <li>Респавны — 2</li>
+                <li>Вампиризм — 7</li>
+                <li>Быстрая перезарядка</li>
+                <li>Дефузы</li>
+            </ul>
+            <button class="btn-buy" onclick="buyVip('Platinum')">Купить</button>
+        </div>
+
+        <!-- VIP God -->
+        <div class="card tier-card card-god">
+            <div class="card-header">
+                <span class="rank-badge">VIP God</span>
+                <span class="price">239 ₽ <span class="price-period">/ 30 дней · 329 ₽ навсегда</span></span>
+            </div>
+            <ul class="card-body">
+                <li><b>x1.3 скорость</b></li>
+                <li><b>150 HP</b></li>
+                <li><b>200 брони</b></li>
+                <li>Шприцы — 2 шт.</li>
+                <li>Респавны — 5</li>
+                <li>Вампиризм — 10</li>
+                <li>Быстрая перезарядка</li>
+                <li>Дефузы</li>
+                <li>Декой-телепорт</li>
+                <li>Зевс</li>
+            </ul>
+            <button class="btn-buy" onclick="buyVip('God')">Купить</button>
+        </div>
+
     </div>
-</div>
+
+    <div class="shop-note">
+        <p>💳 После покупки напиши админу в Discord — привилегия будет выдана в течение 15 минут.</p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    © 2026 ZENTRAX CS2 Server. Все права защищены.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
