@@ -1,27 +1,99 @@
+:root {
+  --bg-color: #1b1f23;
+  --header-bg: #2b3037;
+  --text-color: #e0e0e0;
+  --accent-color: #a0c4ff;
+  --card-bg: #25292e;
+  --price-color: #ff9f43;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #1b1f23;
-  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   margin: 0;
   padding: 0;
 }
+
 header {
-  background: #2b3037;
+  background-color: var(--header-bg);
   padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #3a3f45;
 }
-h1 { margin: 0; font-size: 1.8rem; }
+
+header h1 { margin: 0; font-size: 1.5rem; }
+
 nav a {
-  color: #a0c4ff;
+  color: var(--accent-color);
   text-decoration: none;
-  margin-right: 1rem;
+  margin-left: 1.5rem;
   font-weight: bold;
+  transition: color 0.3s;
 }
-main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
-section { margin-bottom: 2rem; }
-ul, ol { line-height: 1.6; }
+
+nav a:hover { color: #fff; }
+
+main { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+
+section { margin-bottom: 3rem; }
+
+h2 { border-bottom: 1px solid #3a3f45; padding-bottom: 0.5rem; margin-top: 0; }
+
+/* Блок подключения */
+#connect code {
+  background: #000;
+  color: #ff5555;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.note { color: #aaa; font-style: italic; }
+
+/* Сетка магазина */
+#shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+
+.card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #3a3f45;
+}
+
+.card h3 { color: var(--accent-color); margin-top: 0; }
+
+.price {
+  font-size: 1.2rem;
+  color: var(--price-color);
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.card ul { list-style-type: none; padding: 0; }
+.card ul li { padding: 4px 0; border-bottom: 1px solid #3a3f45; }
+.card ul li:last-child { border-bottom: none; }
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--accent-color);
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+button:hover { background-color: #86a8e0; }
+
 footer {
   text-align: center;
-  padding: 1rem;
-  background: #0f1114;
-  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #0f1114;
+  margin-top: 3rem;
+  color: #666;
 }
