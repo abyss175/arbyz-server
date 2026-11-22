@@ -1,121 +1,157 @@
-<!-- Контейнер страницы -->
-<div class="zentrax-page">
-    
-    <!-- Боковая панель (слева) -->
-    <aside class="profile-sidebar">
-        <div class="avatar-wrapper">
-            <div class="avatar-placeholder"></div>
-            <div class="status-dot"></div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENTRAX — Профиль</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-icon">Z</div>
+            <span class="logo-text">ZENTRAX</span>
         </div>
-        <h3 class="player-name-small">Player_1337</h3>
-        <span class="player-role">Пользователь</span>
+        <nav class="main-nav">
+            <a href="index.html">Главная</a>
+            <a href="rules.html">Правила</a>
+            <a href="shop.html">Магазин</a>
+            <a href="profile.html" class="active">Профиль</a>
+        </nav>
+    </div>
+</header>
 
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-icon">⏱</span>
-                <div>
-                    <span class="stat-val">24</span>
-                    <span class="stat-label">Онлайн</span>
-                </div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">🎮</span>
-                <div>
-                    <span class="stat-val">87</span>
-                    <span class="stat-label">Игр сыграно</span>
-                </div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">🏆</span>
-                <div>
-                    <span class="stat-val">61</span>
-                    <span class="stat-label">Побед</span>
-                </div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-icon">⭐</span>
-                <div>
-                    <span class="stat-val">1.47</span>
-                    <span class="stat-label">КД</span>
-                </div>
-            </div>
+<main class="page-container">
+
+    <!-- Поиск игрока -->
+    <section class="card search-card">
+        <h3 class="card-title">🔍 Поиск игрока</h3>
+        <div class="search-row">
+            <input type="text" id="player-input" placeholder="Введите ник или SteamID..."
+                   onkeydown="if(event.key === 'Enter') findPlayer()">
+            <button class="btn-primary" onclick="findPlayer()">Найти</button>
         </div>
+    </section>
 
-        <button class="edit-btn">
-            <span>✎</span> Редактировать профиль
-        </button>
-    </aside>
+    <!-- Сообщение: не найден -->
+    <div id="not-found" class="card not-found" style="display:none;">
+        <h3>Игрок не найден</h3>
+        <p class="note">Проверьте ник или SteamID и попробуйте ещё раз.</p>
+    </div>
 
-    <!-- Основной контент (справа) -->
-    <main class="profile-main">
-        <!-- Приветственный баннер -->
-        <header class="profile-header">
-            <div class="header-left">
+    <!-- Профиль -->
+    <div id="profile" class="profile-layout" style="display:none;">
+
+        <!-- Левая колонка -->
+        <aside class="profile-sidebar">
+            <div class="avatar-wrapper">
+                <div class="avatar-placeholder">👤</div>
+                <div class="status-dot"></div>
+            </div>
+            <h3 class="player-name-small" id="p-name">—</h3>
+            <span class="player-role">Пользователь</span>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-icon">⏱</span>
+                    <div>
+                        <span class="stat-val" id="p-hours">0 ч</span>
+                        <span class="stat-label">Онлайн</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <div>
+                        <span class="stat-val" id="p-kills">0</span>
+                        <span class="stat-label">Убийств</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">💀</span>
+                    <div>
+                        <span class="stat-val" id="p-deaths">0</span>
+                        <span class="stat-label">Смертей</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⭐</span>
+                    <div>
+                        <span class="stat-val" id="p-kd">0</span>
+                        <span class="stat-label">K/D</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Правая колонка -->
+        <div class="profile-main">
+
+            <!-- Шапка -->
+            <div class="profile-banner">
                 <span class="shield-icon">🛡️</span>
-                <h1>Player_1337</h1>
-            </div>
-            <p class="welcome-text">Добро пожаловать на ZENTRAX!</p>
-        </header>
-
-        <!-- Блок информации -->
-        <section class="info-card">
-            <h3>Информация о пользователе</h3>
-            <div class="info-grid">
-                <div class="info-row">
-                    <span class="info-label">SteamID:</span>
-                    <span class="info-value">76561198000000000</span>
-                    <span class="copy-icon">📋</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Дата регистрации:</span>
-                    <span class="info-value">22.11.2025</span>
-                </div>
-                <div class="info-row status-row">
-                    <span class="info-label">Статус:</span>
-                    <span class="status-badge online">Онлайн</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Роль:</span>
-                    <span class="role-badge">Пользователь</span>
+                <div>
+                    <h2 class="banner-name" id="p-name-banner">—</h2>
+                    <p class="muted">Добро пожаловать на ZENTRAX!</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Вкладки (Активность, Достижения, Отзывы) -->
-        <div class="tabs-container">
-            <button class="tab-btn active">Активность</button>
-            <button class="tab-btn">Достижения</button>
-            <button class="tab-btn">Отзывы</button>
-        </div>
+            <!-- Информация -->
+            <div class="card">
+                <h3 class="card-title">📋 Информация о пользователе</h3>
+                <div class="info-grid">
+                    <div class="info-row">
+                        <span class="info-label">SteamID:</span>
+                        <span class="info-value" id="p-steamid">—</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Дата регистрации:</span>
+                        <span class="info-value" id="p-firstseen">—</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Последний визит:</span>
+                        <span class="info-value" id="p-lastseen">—</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Статус:</span>
+                        <span class="info-value" id="p-status">—</span>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Контент вкладки (пример для Активности) -->
-        <section class="tab-content active">
-            <div class="activity-list">
-                <div class="activity-item">
-                    <div class="activity-icon">🛒</div>
-                    <div class="activity-details">
-                        <h4>Покупка VIP Bronze</h4>
-                        <span class="activity-time">Сегодня, 16:24</span>
-                    </div>
-                    <span class="activity-price">+50 ₽</span>
-                </div>
-                <div class="activity-item">
-                    <div class="activity-icon">💬</div>
-                    <div class="activity-details">
-                        <h4>Сообщение в чате</h4>
-                        <span class="activity-time">Сегодня, 15:47</span>
-                    </div>
-                    <span class="activity-price">-</span>
-                </div>
+            <!-- Вкладки -->
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="switchProfileTab(0)">📊 Активность</button>
+                <button class="tab-btn" onclick="switchProfileTab(1)">🏆 Достижения</button>
+                <button class="tab-btn" onclick="switchProfileTab(2)">💬 Отзывы</button>
+            </div>
+
+            <div class="card tab-content active">
                 <div class="activity-item">
                     <div class="activity-icon">🎮</div>
                     <div class="activity-details">
                         <h4>Игра на сервере</h4>
-                        <span class="activity-time">Сегодня, 14:32</span>
+                        <span class="activity-time" id="p-lastseen-2">—</span>
                     </div>
-                    <span class="activity-price">-</span>
                 </div>
             </div>
-        </section>
-    </main>
-</div>
+            <div class="card tab-content">
+                <p class="muted">Достижения появятся после первой игры.</p>
+            </div>
+            <div class="card tab-content">
+                <p class="muted">Отзывов пока нет.</p>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+<footer class="site-footer">
+    © 2026 ZENTRAX CS2 Server. Все права защищены.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
