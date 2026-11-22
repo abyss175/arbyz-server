@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARBYZ CS2 Server</title>
+  <title>ZENTRAX CS2 Server</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>ARBYZ CS2 Server</h1>
+    <h1>ZENTRAX</h1>
     <nav>
       <a href="index.html">Главная</a>
       <a href="rules.html">Правила</a>
@@ -20,22 +20,40 @@
   <main>
     <section id="about">
       <h2>О сервере</h2>
-      <p>Наш сервер CS2 — это комфортная атмосфера, кастомные режимы (HungerGames, Zombie) и стабильная работа без лагов.</p>
+      <p>ZENTRAX — это комфортная атмосфера, кастомные режимы (HungerGames, Zombie) и стабильная работа без лагов.</p>
     </section>
 
     <section id="connect">
       <h2>Как подключиться</h2>
-      <p>Чтобы зайти на сервер, выполните одно из действий:</p>
-      <ol>
-        <li>Откройте консоль в игре (~) и введите: <code>connect IP_АДРЕС:ПОРТ</code></li>
-        <li>Или найдите сервер в списке серверов по названию: <strong>ARBYZ CS2 [RU]</strong></li>
-      </ol>
-      <p class="note">Замените <code>IP_АДРЕС:ПОРТ</code> на актуальные данные вашего сервера.</p>
+
+      <div class="connect-box">
+        <div class="connect-top">
+          <span class="map-label">Карта: <strong id="current-map">—</strong></span>
+          <span class="online-label">Игроков: <strong id="players-online">0/0</strong></span>
+        </div>
+
+        <div class="connect-info">
+          <p>Зайдите на сервер одним из способов:</p>
+          <ol>
+            <li>Нажмите кнопку «Зайти на сервер» ниже — игра откроется автоматически.</li>
+            <li>Или откройте консоль в игре (~) и введите: <code>connect IP_АДРЕС:ПОРТ</code></li>
+          </ol>
+        </div>
+
+        <div class="connect-buttons">
+          <a href="steam://connect/IP_АДРЕС:ПОРТ">
+            <button class="btn-join">Зайти на сервер</button>
+          </a>
+          <button class="btn-copy" onclick="copyConnect()">Скопировать коннект</button>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 ARBYZ CS2 Server. Все права защищены.</p>
+    <p>&copy; 2026 ZENTRAX CS2 Server. Все права защищены.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
