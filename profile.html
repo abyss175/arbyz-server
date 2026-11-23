@@ -24,85 +24,106 @@
 </header>
 
 <main class="page-container">
-    <div class="page">
+    <div class="profile-wrapper">
 
-        <!-- Левая колонка -->
-        <aside class="card profile-card">
-            <div class="avatar">👤</div>
-            <div class="profile-name" id="profile-name">—</div>
-            <div class="profile-role" id="profile-rank-badge">—</div>
+        <!-- Левая колонка: аватар и базовая статистика -->
+        <aside class="profile-sidebar">
+            <div class="avatar-wrapper">
+                <div class="avatar-icon">👤</div>
+            </div>
+            <h2 class="profile-name" id="profile-name">—</h2>
+            <div class="profile-rank" id="profile-rank">—</div>
+
             <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="value online" id="stat-online">0 м</div>
-                    <div class="label">Онлайн</div>
+                <div class="stat-item">
+                    <div class="stat-label">Онлайн</div>
+                    <div class="stat-value" id="stat-online">0 м</div>
                 </div>
-                <div class="stat-box">
-                    <div class="value" id="stat-kills">0</div>
-                    <div class="label">Убийств</div>
+                <div class="stat-item">
+                    <div class="stat-label">Убийств</div>
+                    <div class="stat-value" id="stat-kills">0</div>
                 </div>
-                <div class="stat-box">
-                    <div class="value" id="stat-deaths">0</div>
-                    <div class="label">Смертей</div>
+                <div class="stat-item">
+                    <div class="stat-label">Смертей</div>
+                    <div class="stat-value" id="stat-deaths">0</div>
                 </div>
-                <div class="stat-box">
-                    <div class="value kd" id="stat-kd">0.00</div>
-                    <div class="label">K/D</div>
+                <div class="stat-item">
+                    <div class="stat-label">K/D</div>
+                    <div class="stat-value stat-kd" id="stat-kd">0.00</div>
                 </div>
             </div>
         </aside>
 
-        <!-- Правая колонка -->
+        <!-- Правая колонка: подробная информация и прогресс -->
         <main class="profile-main">
-
-            <div class="card header-card" style="margin-bottom: 20px;">
-                <div class="server-icon">🛡️</div>
-                <div>
-                    <h1 id="header-name">—</h1>
-                    <p class="muted">Добро пожаловать на ZENTRAX!</p>
+            <div class="card card-header">
+                <div class="server-badge">
+                    <span class="badge-icon">🛡️</span>
+                    <span class="badge-text">Добро пожаловать на ZENTRAX!</span>
                 </div>
-            </div>
-
-            <div class="card" style="margin-bottom: 20px;">
-                <h3 class="card-title">📋 Информация о пользователе</h3>
-                <div class="info-row"><span class="key">SteamID:</span><span class="val mono" id="info-steamid">—</span></div>
-                <div class="info-row"><span class="key">Последний визит:</span><span class="val" id="info-lastseen">—</span></div>
-                <div class="info-row"><span class="key">Звание:</span><span class="val" id="info-rank">—</span></div>
+                <h3 id="header-name">—</h3>
             </div>
 
             <div class="card">
-                <h3 class="card-title">📊 Активность</h3>
+                <h3 class="card-title">📋 Информация о пользователе</h3>
+                <div class="info-row">
+                    <span class="info-key">SteamID:</span>
+                    <span class="info-value mono" id="info-steamid">—</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-key">Последний визит:</span>
+                    <span class="info-value" id="info-lastseen">—</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-key">Звание:</span>
+                    <span class="info-value" id="info-rank">—</span>
+                </div>
+            </div>
 
-                <div id="rank-info">
-                    <div class="rank-name" id="rank-name">Загрузка…</div>
-                    <div class="rank-xp" id="rank-xp"></div>
-                    <div class="rank-progress"><div class="rank-progress-bar" id="rank-bar"></div></div>
-                    <div class="rank-next" id="rank-next"></div>
+            <div class="card">
+                <h3 class="card-title">📈 Прогресс и активность</h3>
+
+                <div class="rank-block">
+                    <div class="rank-name" id="rank-name">—</div>
+                    <div class="rank-xp-row">
+                        <div class="rank-xp-current" id="rank-xp-current">0 XP</div>
+                        <div class="rank-xp-next" id="rank-xp-next">До следующего: — XP</div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="rank-bar"></div>
+                    </div>
                 </div>
 
-                <div class="rank-top">
-                    <h3 class="card-title" style="margin-top: 20px;">🏆 Топ игроков сервера</h3>
-                    <table class="data">
+                <div class="top-players-block">
+                    <h4 class="section-title">🏆 Топ игроков сервера</h4>
+                    <table class="data-table">
                         <thead>
-                            <tr><th>#</th><th>Игрок</th><th>Звание</th><th>XP</th><th>K/D</th><th>Статус</th></tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Игрок</th>
+                                <th>Звание</th>
+                                <th>XP</th>
+                                <th>K/D</th>
+                                <th>Статус</th>
+                            </tr>
                         </thead>
                         <tbody id="top-table"></tbody>
                     </table>
                     <div class="hint">Нажми на имя игрока, чтобы открыть его профиль</div>
                 </div>
-
-                <!-- Форма: кто я (если ?steamid= не передан) -->
-                <div id="id-setup" style="display:none;">
-                    <h3 class="card-title" style="margin-top:18px;">🔑 Кто ты?</h3>
-                    <div class="id-form">
-                        <input type="text" id="steamid-input" placeholder="Введи свой SteamID (76561199783...)" />
-                        <button id="save-steamid" class="btn-primary">Сохранить</button>
-                    </div>
-                    <div class="hint">Достаточно ввести один раз — браузер запомнит. Или открой чужой профиль по ссылке.</div>
-                </div>
-
-                <div class="updated-note" id="updated-note"></div>
             </div>
 
+            <!-- Форма: кто я (если ?steamid= не передан) -->
+            <div id="id-setup" class="card" style="display:none;">
+                <h3 class="card-title">🔑 Кто ты?</h3>
+                <div class="id-form">
+                    <input type="text" id="steamid-input" placeholder="Введи свой SteamID (76561199783...)" />
+                    <button id="save-steamid" class="btn-primary">Сохранить</button>
+                </div>
+                <div class="hint">Достаточно ввести один раз — браузер запомнит. Или открой чужой профиль по ссылке.</div>
+            </div>
+
+            <div class="updated-note" id="updated-note"></div>
         </main>
     </div>
 </main>
@@ -133,12 +154,11 @@ async function loadRanks() {
 }
 
 // ================== НОРМАЛИЗАЦИЯ STEAMID ==================
-// База может хранить как 76561..., так и STEAM_1:0:... — приводим к 64-битному виду
 function normalizeSteamId(v) {
     let s = String(v ?? '').trim();
     if (s.startsWith('STEAM_')) {
-        const m = s.match(/STEAM_\d:([01]):(\d+)/);
-        if (m) return String(BigInt('76561197960265728') + BigInt(m[2]) * 2n + BigInt(m[1]));
+        const m = s.match(/STEAM_\d:():(\d+)/);
+        if (m) return String(BigInt('76561197960265728') + BigInt(m) * 2n + BigInt(m));
     }
     return s;
 }
@@ -147,7 +167,7 @@ function normalizeSteamId(v) {
 function formatPlaytime(m) {
     if (!m || m <= 0) return '0 м';
     const h = Math.floor(m / 60);
-    return h > 0 ? `${h} ч ${m % 60} м` : `${m} м`;
+    return h > 0 ? `${h} ч ${m % 60} м` : `\${m} м`;
 }
 function formatLastSeen(v) {
     if (!v) return '—';
@@ -157,18 +177,20 @@ function formatLastSeen(v) {
 }
 function progressPercent(data, me) {
     const idx = data.ranks.findIndex(r => r.name === me.rank);
+    if (idx < 0) return 0;
     const cur = data.ranks[idx].xp;
     const next = idx > 0 ? data.ranks[idx - 1].xp : cur;
     return next === cur ? 100 : Math.min(100, Math.round(((me.xp - cur) / (next - cur)) * 100));
 }
 function xpToNext(data, me) {
     const idx = data.ranks.findIndex(r => r.name === me.rank);
-    return idx <= 0 ? 0 : data.ranks[idx - 1].xp - me.xp;
+    if (idx <= 0) return 0;
+    return data.ranks[idx - 1].xp - me.xp;
 }
 
 // ================== ОТРИСОВКА ==================
 function render(data) {
-    // 1. Топ игроков — рисуем ВСЕГДА, даже если свой профиль не найден
+    // 1. Топ игроков — рисуем ВСЕГДА
     const tbody = document.getElementById('top-table');
     tbody.innerHTML = '';
     data.players.forEach((p, i) => {
@@ -176,11 +198,11 @@ function render(data) {
         const pId = normalizeSteamId(p.steamId);
         if (targetId && pId === normalizeSteamId(targetId)) tr.classList.add('me');
         tr.innerHTML = `
-            <td>${i + 1}</td>
-            <td><a href="${SITE_URL}?steamid=${encodeURIComponent(pId)}">${p.name}</a></td>
-            <td>${p.rank}</td>
-            <td>${p.xp}</td>
-            <td>${p.kd.toFixed(2)}</td>
+            <td>\${i + 1}</td>
+            <td><a href="${SITE_URL}?steamid=${encodeURIComponent(pId)}">\${p.name}</a></td>
+            <td>\${p.rank}</td>
+            <td>\${p.xp}</td>
+            <td>\${p.kd.toFixed(2)}</td>
             <td><span class="status-badge ${p.online ? 'status-online' : 'status-offline'}">${p.online ? 'Онлайн' : 'Офлайн'}</span></td>
         `;
         tbody.appendChild(tr);
@@ -193,8 +215,8 @@ function render(data) {
     // 2. Свой профиль: если ID не задан — показываем форму, таблица уже отрисована
     if (!targetId) {
         document.getElementById('rank-name').textContent = 'Укажи свой SteamID';
-        document.getElementById('rank-xp').textContent = '';
-        document.getElementById('rank-next').textContent = '';
+        document.getElementById('rank-xp-current').textContent = '';
+        document.getElementById('rank-xp-next').textContent = '';
         document.getElementById('id-setup').style.display = 'block';
         document.getElementById('save-steamid').onclick = () => {
             const val = normalizeSteamId(document.getElementById('steamid-input').value);
@@ -207,34 +229,34 @@ function render(data) {
     const me = data.players.find(p => normalizeSteamId(p.steamId) === normalizeSteamId(targetId));
     if (!me) {
         document.getElementById('rank-name').textContent = 'Профиль не найден в статистике';
-        document.getElementById('rank-xp').textContent = '';
-        document.getElementById('rank-next').textContent = 'Проверь SteamID — сыграй на сервере хотя бы один раунд, чтобы попасть в базу.';
+        document.getElementById('rank-xp-current').textContent = '';
+        document.getElementById('rank-xp-next').textContent = 'Проверь SteamID — сыграй на сервере хотя бы один раунд, чтобы попасть в базу.';
         if (isMyProfile) document.getElementById('id-setup').style.display = 'block';
         return;
     }
 
     // Левая карточка
     document.getElementById('profile-name').textContent = me.name;
-    document.getElementById('profile-rank-badge').textContent = me.rank;
+    document.getElementById('profile-rank').textContent = me.rank;
     document.getElementById('stat-online').textContent = formatPlaytime(me.playtimeMinutes);
     document.getElementById('stat-kills').textContent = me.kills;
     document.getElementById('stat-deaths').textContent = me.deaths;
     document.getElementById('stat-kd').textContent = me.kd.toFixed(2);
 
     // Шапка и инфо
-    document.title = `ZENTRAX — ${me.name}`;
+    document.title = `ZENTRAX — \${me.name}`;
     document.getElementById('header-name').textContent = me.name;
     document.getElementById('info-steamid').textContent = me.steamId;
     document.getElementById('info-lastseen').textContent = formatLastSeen(me.lastSeen);
     document.getElementById('info-rank').textContent = me.rank;
 
-    // Активность
+    // Активность и прогресс
     document.getElementById('rank-name').textContent = me.rank;
-    document.getElementById('rank-xp').textContent = `${me.xp} XP`;
-    document.getElementById('rank-bar').style.width = progressPercent(data, me) + '%';
+    document.getElementById('rank-xp-current').textContent = `\${me.xp} XP`;
     const toNext = xpToNext(data, me);
-    document.getElementById('rank-next').textContent =
-        toNext > 0 ? `До следующего звания: ${toNext} XP` : 'Максимальное звание достигнуто!';
+    document.getElementById('rank-xp-next').textContent =
+        toNext > 0 ? `До следующего: \${toNext} XP` : 'Максимальное звание достигнуто!';
+    document.getElementById('rank-bar').style.width = progressPercent(data, me) + '%';
 }
 
 loadRanks()
