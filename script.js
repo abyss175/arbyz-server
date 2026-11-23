@@ -1,13 +1,10 @@
 // ============================================================
 // КОНФИГУРАЦИЯ (меняй тут)
 // ============================================================
-const SERVER_ADDR = '26.217.63.96:27015';
+const SERVER_ADDR = '26.217.63.96';
 
-// Рулетка: только ВХ и Невидимость (позже добавишь другие режимы)
-const ROULETTE_MODES = [
-    'ВХ (WallHack)',
-    'Невидимость'
-];
+// Рулетка: только ВХ и Невидимость (в будущем добавишь другие)
+const ROULETTE_MODES = ['ВХ (WallHack)', 'Невидимость'];
 
 // ============================================================
 // КОПИРОВАНИЕ КОМАНДЫ CONNECT
@@ -26,7 +23,7 @@ function copyConnect() {
 }
 
 // ============================================================
-// СТАТУС СЕРВЕРА (карта и онлайн) — главная страница
+// СТАТУС СЕРВЕРА (карта и онлайн)
 // ============================================================
 fetch('status.json')
     .then(res => {
@@ -34,6 +31,7 @@ fetch('status.json')
         return res.json();
     })
     .then(data => {
+        const badge = document.getElementById('server-status');
         const map1 = document.getElementById('current-map');
         const map2 = document.getElementById('current-map-2');
         const pl1 = document.getElementById('players-online');
@@ -43,6 +41,10 @@ fetch('status.json')
         const mapText = data.offline ? 'Сервер офлайн' : (data.map || '—');
         const plText = data.offline ? '0' : data.players + ' / ' + (data.maxPlayers || 20);
 
+        if (badge) {
+            badge.textContent = data.offline ? 'Сервер офлайн' : 'Сервер онлайн';
+            badge.className = 'status-badge ' + (data.offline ? 'status-offline' : 'status-online');
+        }
         if (map1) map1.textContent = mapText;
         if (map2) map2.textContent = mapText;
         if (pl1) pl1.textContent = plText;
@@ -52,9 +54,7 @@ fetch('status.json')
             timeEl.textContent = 'Обновлено: ' + new Date(data.updated).toLocaleString('ru-RU');
         }
     })
-    .catch(err => {
-        console.warn('Не удалось загрузить status.json', err);
-    });
+    .catch(err => console.warn('Не удалось загрузить status.json', err));
 
 // ============================================================
 // ПОДКЛЮЧЕНИЕ К СЕРВЕРУ КНОПКОЙ
@@ -71,7 +71,7 @@ function connectToServer() {
 }
 
 // ============================================================
-// ВКЛАДКИ МАГАЗИНА
+// ВКЛАДКИ (магазин + правила — общая механика)
 // ============================================================
 document.querySelectorAll('.shop-tab').forEach(tab => {
     tab.addEventListener('click', () => {
@@ -80,13 +80,13 @@ document.querySelectorAll('.shop-tab').forEach(tab => {
 
         document.querySelectorAll('.shop-panel').forEach(p => p.style.display = 'none');
 
-        const targetPanel = document.getElementById(tab.getAttribute('data-tab'));
-        if (targetPanel) targetPanel.style.display = 'block';
+        const target = document.getElementById(tab.getAttribute('data-tab'));
+        if (target) target.style.display = 'block';
     });
 });
 
 // ============================================================
-// РУЛЕТКА РАНДОМНОГО РЕЖИМА (только ВХ и Невидимость)
+// РУЛЕТКА РАНДОМНОГО РЕЖИМА
 // ============================================================
 let rouletteBusy = false;
 
