@@ -26,95 +26,225 @@
 <main class="page-container">
     <div class="shop-header">
         <h1>Магазин привилегий</h1>
-        <p>Выберите ранг, чтобы улучшить свой игровой опыт.</p>
+        <p>Выберите категорию, чтобы улучшить свой игровой опыт.</p>
     </div>
 
-    <div class="cards-container">
+    <!-- Вкладки -->
+    <div class="shop-tabs">
+        <button class="shop-tab active" data-tab="tab-vip">⭐ VIP</button>
+        <button class="shop-tab" data-tab="tab-admin">🛡️ Админка</button>
+        <button class="shop-tab" data-tab="tab-extra">🎲 Разное</button>
+    </div>
 
-        <!-- VIP Bronze -->
-        <div class="card tier-card card-bronze">
-            <div class="card-header">
-                <span class="rank-badge">VIP Bronze</span>
-                <span class="price">9 ₽ <span class="price-period">/ 7 дней</span></span>
+    <!-- ============ ВИП ============ -->
+    <div class="shop-panel active" id="tab-vip">
+        <div class="cards-container">
+
+            <div class="card tier-card card-bronze">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Bronze</span>
+                    <span class="price">9 ₽ <span class="price-period">/ 7 дней</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>105 HP</b></li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
             </div>
-            <ul class="card-body">
-                <li><b>105 HP</b></li>
-            </ul>
-            <button class="btn-buy" onclick="buyVip('Bronze')">Купить</button>
-        </div>
 
-        <!-- VIP Gold -->
-        <div class="card tier-card card-gold">
-            <div class="card-header">
-                <span class="rank-badge">VIP Gold</span>
-                <span class="price">29 ₽ <span class="price-period">/ 7 дней · 49 ₽ / 30 дней</span></span>
+            <div class="card tier-card card-gold">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Gold</span>
+                    <span class="price">29 ₽ <span class="price-period">/ 7 дней · 49 ₽ / 30 дней</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.05 скорость</b></li>
+                    <li><b>110 HP</b></li>
+                    <li><b>50 брони</b></li>
+                    <li>Шприц — 1 шт.</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
             </div>
-            <ul class="card-body">
-                <li><b>x1.05 скорость</b></li>
-                <li><b>110 HP</b></li>
-                <li><b>50 брони</b></li>
-                <li>Шприц — 1 шт.</li>
-            </ul>
-            <button class="btn-buy" onclick="buyVip('Gold')">Купить</button>
-        </div>
 
-        <!-- VIP Diamond -->
-        <div class="card tier-card card-diamond">
-            <div class="card-header">
-                <span class="rank-badge">VIP Diamond</span>
-                <span class="price">79 ₽ <span class="price-period">/ 7 дней · 119 ₽ / 30 дней · 199 ₽ навсегда</span></span>
+            <div class="card tier-card card-diamond">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Diamond</span>
+                    <span class="price">79 ₽ <span class="price-period">/ 7 дней · 119 ₽ / 30 дней · 199 ₽ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.1 скорость</b></li>
+                    <li><b>115 HP</b></li>
+                    <li><b>100 брони</b></li>
+                    <li>Шприцы — 2 шт.</li>
+                    <li>Респавн — 1</li>
+                    <li>Вампиризм — 5</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
             </div>
-            <ul class="card-body">
-                <li><b>x1.1 скорость</b></li>
-                <li><b>115 HP</b></li>
-                <li><b>100 брони</b></li>
-                <li>Шприцы — 2 шт.</li>
-                <li>Респавн — 1</li>
-                <li>Вампиризм — 5</li>
-            </ul>
-            <button class="btn-buy" onclick="buyVip('Diamond')">Купить</button>
-        </div>
 
-        <!-- VIP Platinum -->
-        <div class="card tier-card card-platinum">
-            <div class="card-header">
-                <span class="rank-badge">VIP Platinum</span>
-                <span class="price">129 ₽ <span class="price-period">/ 7 дней · 169 ₽ / 30 дней · 249 ₽ навсегда</span></span>
+            <div class="card tier-card card-platinum">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Platinum</span>
+                    <span class="price">129 ₽ <span class="price-period">/ 7 дней · 169 ₽ / 30 дней · 249 ₽ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.15 скорость</b></li>
+                    <li><b>125 HP</b></li>
+                    <li><b>150 брони</b></li>
+                    <li>Шприцы — 2 шт.</li>
+                    <li>Респавны — 2</li>
+                    <li>Вампиризм — 7</li>
+                    <li>Быстрая перезарядка</li>
+                    <li>Дефузы</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
             </div>
-            <ul class="card-body">
-                <li><b>x1.15 скорость</b></li>
-                <li><b>125 HP</b></li>
-                <li><b>150 брони</b></li>
-                <li>Шприцы — 2 шт.</li>
-                <li>Респавны — 2</li>
-                <li>Вампиризм — 7</li>
-                <li>Быстрая перезарядка</li>
-                <li>Дефузы</li>
-            </ul>
-            <button class="btn-buy" onclick="buyVip('Platinum')">Купить</button>
-        </div>
 
-        <!-- VIP God -->
-        <div class="card tier-card card-god">
-            <div class="card-header">
-                <span class="rank-badge">VIP God</span>
-                <span class="price">239 ₽ <span class="price-period">/ 30 дней · 329 ₽ навсегда</span></span>
+            <div class="card tier-card card-god">
+                <div class="card-header">
+                    <span class="rank-badge">VIP God</span>
+                    <span class="price">239 ₽ <span class="price-period">/ 30 дней · 329 ₽ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.3 скорость</b></li>
+                    <li><b>150 HP</b></li>
+                    <li><b>200 брони</b></li>
+                    <li>Шприцы — 2 шт.</li>
+                    <li>Респавны — 5</li>
+                    <li>Вампиризм — 10</li>
+                    <li>Быстрая перезарядка</li>
+                    <li>Дефузы</li>
+                    <li>Декой-телепорт</li>
+                    <li>Зевс</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
             </div>
-            <ul class="card-body">
-                <li><b>x1.3 скорость</b></li>
-                <li><b>150 HP</b></li>
-                <li><b>200 брони</b></li>
-                <li>Шприцы — 2 шт.</li>
-                <li>Респавны — 5</li>
-                <li>Вампиризм — 10</li>
-                <li>Быстрая перезарядка</li>
-                <li>Дефузы</li>
-                <li>Декой-телепорт</li>
-                <li>Зевс</li>
-            </ul>
-            <button class="btn-buy" onclick="buyVip('God')">Купить</button>
-        </div>
 
+        </div>
+    </div>
+
+    <!-- ============ АДМИНКА ============ -->
+    <div class="shop-panel" id="tab-admin" style="display:none;">
+        <div class="cards-container">
+
+            <div class="card tier-card card-moder">
+                <div class="card-header">
+                    <span class="rank-badge">MODERATOR</span>
+                    <span class="price">99 ₽ <span class="price-period">/ 30 дней</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>Мут / unmute</b> игроков</li>
+                    <li><b>Кик</b> игроков</li>
+                    <li><b>Бан</b> до 1 дня</li>
+                    <li>Голосовой приоритет</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-admin">
+                <div class="card-header">
+                    <span class="rank-badge">ADMIN</span>
+                    <span class="price">179 ₽ <span class="price-period">/ 30 дней · 299 ₽ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>Всё из MODERATOR</b></li>
+                    <li><b>Бан</b> на любой срок</li>
+                    <li><b>Смена карты</b></li>
+                    <li><b>Рестарт раунда</b></li>
+                    <li>Смена режима игры</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-owner">
+                <div class="card-header">
+                    <span class="rank-badge">CO-ADMIN</span>
+                    <span class="price">349 ₽ <span class="price-period">/ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>Всё из ADMIN</b></li>
+                    <li><b>Настройка плагинов</b></li>
+                    <li><b>Выдача VIP игрокам</b></li>
+                    <li>Полный доступ к серверу</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============ РАЗНОЕ ============ -->
+    <div class="shop-panel" id="tab-extra" style="display:none;">
+        <div class="cards-container">
+
+            <div class="card tier-card card-extra">
+                <div class="card-header">
+                    <span class="rank-badge">🌗 Гравитация x0.7</span>
+                    <span class="price">19 ₽</span>
+                </div>
+                <ul class="card-body">
+                    <li>Низкая гравитация на 1 раунд</li>
+                    <li>Прыгаешь выше и дальше</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-extra">
+                <div class="card-header">
+                    <span class="rank-badge">⚡ +100 опыта</span>
+                    <span class="price">15 ₽</span>
+                </div>
+                <ul class="card-body">
+                    <li>Мгновенно +100 XP в статистику</li>
+                    <li>Быстрый путь к следующему званию</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-extra">
+                <div class="card-header">
+                    <span class="rank-badge">💨 Dash</span>
+                    <span class="price">29 ₽ <span class="price-period">/ 7 дней</span></span>
+                </div>
+                <ul class="card-body">
+                    <li>Рывок в любую сторону по кнопке</li>
+                    <li>Перезарядка 10 секунд</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-extra">
+                <div class="card-header">
+                    <span class="rank-badge">🪝 Hook</span>
+                    <span class="price">39 ₽ <span class="price-period">/ 7 дней</span></span>
+                </div>
+                <ul class="card-body">
+                    <li>Крюк-трос: притягиваешься к точке</li>
+                    <li>Активация по кнопке E в прицеле</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <!-- РУЛЕТКА -->
+            <div class="card tier-card card-roulette">
+                <div class="card-header">
+                    <span class="rank-badge">🎰 Рандомный режим</span>
+                    <span class="price">25 ₽</span>
+                </div>
+                <ul class="card-body">
+                    <li>Крути рулетку — выпадет случайный режим</li>
+                    <li>Режим выдаётся на 1 карту</li>
+                    <li>О режиме объявят в чате сервера</li>
+                </ul>
+                <div class="roulette-box">
+                    <div class="roulette-reel" id="roulette-reel">🎰</div>
+                    <div class="roulette-result" id="roulette-result"></div>
+                </div>
+                <button class="btn-buy btn-roulette" onclick="spinRoulette()">Крутить рулетку</button>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank"
+                   id="roulette-buy" style="display:none;">Купить выпавший режим</a>
+            </div>
+
+        </div>
     </div>
 
     <div class="shop-note">
