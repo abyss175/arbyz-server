@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T09:07:44.256Z",
+  "updated": "2026-11-23T09:33:58.350Z",
   "ranks": [
     {
       "name": "The Global Elite",
@@ -87,7 +87,7 @@
       "kills": 55,
       "deaths": 45,
       "kd": 1.22,
-      "playtimeMinutes": 28297,
+      "playtimeMinutes": 471,
       "lastSeen": 1795384889
     },
     {
@@ -98,7 +98,7 @@
       "kills": 29,
       "deaths": 52,
       "kd": 0.56,
-      "playtimeMinutes": 13435,
+      "playtimeMinutes": 223,
       "lastSeen": 1795384889
     },
     {
@@ -109,7 +109,7 @@
       "kills": 7,
       "deaths": 16,
       "kd": 0.44,
-      "playtimeMinutes": 2965,
+      "playtimeMinutes": 49,
       "lastSeen": 1793017320
     },
     {
@@ -120,7 +120,7 @@
       "kills": 3,
       "deaths": 37,
       "kd": 0.08,
-      "playtimeMinutes": 2911,
+      "playtimeMinutes": 48,
       "lastSeen": 1793462313
     },
     {
@@ -131,7 +131,7 @@
       "kills": 44,
       "deaths": 131,
       "kd": 0.34,
-      "playtimeMinutes": 38926,
+      "playtimeMinutes": 648,
       "lastSeen": 1795377294
     }
   ]
