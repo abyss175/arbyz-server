@@ -6,82 +6,72 @@
     <title>ZENTRAX — CS2 Server</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
-        }
-        .hero-title {
-            font-size: 2.4em;
-            font-weight: 800;
-            margin: 0 0 10px;
-        }
-        .hero-subtitle {
-            color: var(--muted, #888);
-            margin: 0 0 28px;
-            font-size: 1.1em;
-        }
-        .connect-btn {
-            display: inline-block;
-            padding: 14px 36px;
-            font-size: 1.1em;
-            font-weight: 700;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            color: #fff;
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            text-decoration: none;
-            transition: transform 0.15s, box-shadow 0.15s;
-        }
-        .connect-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4); }
-
-        .server-card {
-            max-width: 640px;
-            margin: 0 auto 40px;
-            padding: 22px 26px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .server-card h3 { margin: 0 0 16px; }
-        .server-status-block {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        /* Компактная панель статуса — в стиле старой верстки */
+        .status-panel {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
             gap: 12px;
+            padding: 10px 16px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            margin-bottom: 16px;
         }
-        .status-item { display: flex; align-items: center; gap: 10px; }
-        .status-label { color: var(--muted, #888); font-size: 0.9em; }
-        .status-value { font-weight: 700; }
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95em;
+        }
+        .status-label { color: var(--muted, #aaa); }
+        .status-value { font-weight: 600; }
         .status-online { color: #2ecc71; }
         .status-offline { color: #e74c3c; }
         .mono { font-family: monospace; }
 
+        /* Кнопка подключения — компактная, в строку с панелью */
+        .connect-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #fff;
+            background: #3498db;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .connect-btn:hover { background: #2980b9; }
+
+        /* Старый стиль карточек фич — сетка, нейтральные тона */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+        }
+        .feature-card {
+            padding: 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+        .feature-icon { font-size: 1.6em; margin-bottom: 8px; }
+        .feature-title { font-weight: 700; margin-bottom: 4px; }
+        .feature-text { color: var(--muted, #999); font-size: 0.88em; }
+
+        /* Копируемый IP */
         .copy-hint {
-            margin-top: 14px;
+            margin-top: 10px;
             color: var(--muted, #888);
             font-size: 0.85em;
+            cursor: pointer;
         }
         .copy-hint code {
             background: rgba(255, 255, 255, 0.08);
-            padding: 2px 8px;
-            border-radius: 6px;
-            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-        .feature-card {
-            padding: 20px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            text-align: center;
-        }
-        .feature-icon { font-size: 2em; margin-bottom: 10px; }
-        .feature-title { font-weight: 700; margin-bottom: 6px; }
-        .feature-text { color: var(--muted, #888); font-size: 0.9em; }
     </style>
 </head>
 <body>
@@ -103,43 +93,36 @@
 
 <main class="page-container">
 
-    <!-- Герой-секция: подключение к серверу -->
-    <section class="hero">
-        <h1 class="hero-title">ZENTRAX CS2 Server</h1>
-        <p class="hero-subtitle">Классический сервер с системой званий и статистики</p>
-
-        <a id="connect-btn" class="connect-btn" href="steam://connect/connect 26.217.63.96">
-            🎮 Подключиться к серверу
-        </a>
-
-        <div class="server-card">
-            <h3>🖥️ Статус сервера</h3>
-            <div class="server-status-block">
-                <div class="status-item">
-                    <span class="status-label">Сервер:</span>
-                    <span class="status-value" id="server-online-status">Загрузка…</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-label">Карта:</span>
-                    <span class="status-value mono" id="server-map">—</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-label">Игроки:</span>
-                    <span class="status-value" id="server-players">—</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-label">Название:</span>
-                    <span class="status-value" id="server-name">—</span>
-                </div>
-            </div>
-            <div class="copy-hint">
-                IP для ручного подключения: <code id="server-ip" title="Нажми, чтобы скопировать">connect 26.217.63.96</code>
-            </div>
+    <!-- Компактная панель статуса (старый стиль) -->
+    <div class="status-panel">
+        <div>
+            <span class="status-item">
+                <span class="status-label">Сервер:</span>
+                <span class="status-value" id="server-online-status">Загрузка…</span>
+            </span>
+            <span class="status-item" style="margin-left: 12px;">
+                <span class="status-label">Карта:</span>
+                <span class="status-value mono" id="server-map">—</span>
+            </span>
+            <span class="status-item" style="margin-left: 12px;">
+                <span class="status-label">Игроки:</span>
+                <span class="status-value" id="server-players">—</span>
+            </span>
         </div>
-    </section>
 
-    <!-- Краткие фичи -->
-    <section>
+        <!-- Кнопка подключения в той же строке -->
+        <a id="connect-btn" class="connect-btn" href="steam://connect/26.217.63.96">
+            🎮 Подключиться
+        </a>
+    </div>
+
+    <div class="copy-hint">
+        IP для ручного подключения: <code id="server-ip" title="Нажми, чтобы скопировать">connect 26.217.63.96</code>
+    </div>
+
+    <!-- Старый стиль сетки фич -->
+    <section class="features-section">
+        <h2>Особенности сервера</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🏅</div>
@@ -159,6 +142,11 @@
         </div>
     </section>
 
+    <!-- Сюда можно вернуть любой твой старый блок (правила, новости, топ) -->
+    <section>
+        <h2>Новости и обновления</h2>
+        <p>Проверяй раздел «Правила» — там всегда актуальные изменения механик и античита.</p>
+    </section>
 </main>
 
 <footer class="site-footer">
@@ -166,70 +154,67 @@
 </footer>
 
 <script>
-// ================== НАСТРОЙКИ ==================
-const SERVER_IP = 'connect 26.217.63.96'; // тот же адрес, что в кнопке «Подключиться»
+    // ================== НАСТРОЙКИ ==================
+    const SERVER_IP = '26.217.63.96'; // замени на реальный IP:порт
 
-// ================== ЗАГРУЗКА СТАТУСА ==================
-async function loadServerStatus() {
-    try {
-        const res = await fetch('server-status.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return await res.json();
-    } catch (e) {
-        console.error('Ошибка статуса сервера:', e);
-        return null;
-    }
-}
-
-// ================== ОТРИСОВКА СТАТУСА ==================
-function renderServerStatus(status) {
-    const onlineEl = document.getElementById('server-online-status');
-    const mapEl = document.getElementById('server-map');
-    const playersEl = document.getElementById('server-players');
-    const nameEl = document.getElementById('server-name');
-
-    if (!status) {
-        onlineEl.textContent = 'Неизвестно';
-        onlineEl.className = 'status-value status-offline';
-        mapEl.textContent = '—';
-        playersEl.textContent = '—';
-        nameEl.textContent = '—';
-        return;
+    // ================== ЗАГРУЗКА СТАТУСА ==================
+    async function loadServerStatus() {
+        try {
+            const res = await fetch('server-status.json', { cache: 'no-store' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return await res.json();
+        } catch (e) {
+            console.error('Ошибка статуса сервера:', e);
+            return null;
+        }
     }
 
-    if (status.online) {
-        onlineEl.textContent = 'Онлайн';
-        onlineEl.className = 'status-value status-online';
-    } else {
-        onlineEl.textContent = 'Офлайн';
-        onlineEl.className = 'status-value status-offline';
+    // ================== ОТРИСОВКА СТАТУСА ==================
+    function renderServerStatus(status) {
+        const onlineEl = document.getElementById('server-online-status');
+        const mapEl = document.getElementById('server-map');
+        const playersEl = document.getElementById('server-players');
+
+        if (!status) {
+            onlineEl.textContent = 'Неизвестно';
+            onlineEl.className = 'status-value status-offline';
+            mapEl.textContent = '—';
+            playersEl.textContent = '—';
+            return;
+        }
+
+        if (status.online) {
+            onlineEl.textContent = 'Онлайн';
+            onlineEl.className = 'status-value status-online';
+        } else {
+            onlineEl.textContent = 'Офлайн';
+            onlineEl.className = 'status-value status-offline';
+        }
+
+        mapEl.textContent = status.map || '—';
+        playersEl.textContent = status.maxPlayers > 0
+            ? (status.players + ' / ' + status.maxPlayers)
+            : '—';
     }
 
-    mapEl.textContent = status.map || '—';
-    playersEl.textContent = status.maxPlayers > 0
-        ? (status.players + ' / ' + status.maxPlayers)
-        : '—';
-    nameEl.textContent = status.name || '—';
-}
+    // ================== КОПИРОВАНИЕ IP ==================
+    document.getElementById('server-ip').onclick = function() {
+        const ip = this.textContent;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(ip).then(function() {
+                const el = document.getElementById('server-ip');
+                const old = el.textContent;
+                el.textContent = 'Скопировано!';
+                setTimeout(function() { el.textContent = old; }, 1500);
+            });
+        }
+    };
 
-// ================== КОПИРОВАНИЕ IP ==================
-document.getElementById('server-ip').onclick = function() {
-    const ip = this.textContent;
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(ip).then(function() {
-            const el = document.getElementById('server-ip');
-            const old = el.textContent;
-            el.textContent = 'Скопировано!';
-            setTimeout(function() { el.textContent = old; }, 1500);
-        });
-    }
-};
+    // ================== СТАРТ ==================
+    document.getElementById('connect-btn').href = 'steam://connect/' + SERVER_IP;
+    document.getElementById('server-ip').textContent = SERVER_IP;
 
-// ================== СТАРТ ==================
-document.getElementById('connect-btn').href = 'steam://connect/' + SERVER_IP;
-document.getElementById('server-ip').textContent = SERVER_IP;
-
-loadServerStatus().then(renderServerStatus);
+    loadServerStatus().then(renderServerStatus);
 </script>
 </body>
 </html>
