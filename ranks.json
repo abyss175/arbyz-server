@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T19:28:01.298Z",
+  "updated": "2026-11-23T19:32:19.323Z",
   "ranks": [
     {
       "name": "None",
@@ -86,10 +86,10 @@
       "deaths": 45,
       "playtimeMinutes": 509,
       "online": false,
-      "lastSeen": null,
+      "lastSeen": "2026-11-23T17:38:21.000Z",
       "xp": 530,
       "kd": 1.22,
-      "rank": "None",
+      "rank": "Silver Elite Master",
       "avatar": "https://avatars.steamstatic.com/bf251b42d11a028fdf466fa98fe369a2a29b50fd_full.jpg",
       "profileUrl": "https://steamcommunity.com/profiles/76561199783123219/"
     },
@@ -100,10 +100,10 @@
       "deaths": 52,
       "playtimeMinutes": 223,
       "online": false,
-      "lastSeen": null,
+      "lastSeen": "2026-11-22T22:01:29.000Z",
       "xp": 66,
       "kd": 0.56,
-      "rank": "None",
+      "rank": "Silver I",
       "avatar": "https://avatars.steamstatic.com/2d816f1ff40fda3115793fb5394c4192d4038e12_full.jpg",
       "profileUrl": "https://steamcommunity.com/profiles/76561199550252207/"
     },
@@ -114,10 +114,10 @@
       "deaths": 16,
       "playtimeMinutes": 49,
       "online": false,
-      "lastSeen": null,
+      "lastSeen": "2026-10-26T12:22:00.000Z",
       "xp": 63,
       "kd": 0.44,
-      "rank": "None",
+      "rank": "Silver I",
       "avatar": "https://avatars.steamstatic.com/6d44ddc94625eeae340f803594f3313f2d6d9d4b_full.jpg",
       "profileUrl": "https://steamcommunity.com/id/Sykage/"
     },
@@ -128,10 +128,10 @@
       "deaths": 37,
       "playtimeMinutes": 48,
       "online": false,
-      "lastSeen": null,
+      "lastSeen": "2026-10-31T15:58:33.000Z",
       "xp": 61,
       "kd": 0.08,
-      "rank": "None",
+      "rank": "Silver I",
       "avatar": "https://avatars.steamstatic.com/49b0ee0a1d80ecf5cf82a69797f3fc2c2c6136e2_full.jpg",
       "profileUrl": "https://steamcommunity.com/profiles/76561198712852604/"
     },
@@ -142,7 +142,7 @@
       "deaths": 131,
       "playtimeMinutes": 648,
       "online": false,
-      "lastSeen": null,
+      "lastSeen": "2026-11-22T19:54:54.000Z",
       "xp": 2,
       "kd": 0.34,
       "rank": "None",
