@@ -10,9 +10,9 @@
         .status-item { display: flex; align-items: center; gap: 8px; }
         .status-label { color: var(--muted, #888); font-size: 0.9em; }
         .status-value { font-weight: 600; }
-        .mono { font-family: monospace; }
         .status-online { color: #2ecc71; }
         .status-offline { color: #e74c3c; }
+        .mono { font-family: monospace; }
     </style>
 </head>
 <body>
@@ -74,24 +74,6 @@
                     <span class="badge-text">Добро пожаловать на ZENTRAX!</span>
                 </div>
                 <h3 id="header-name">—</h3>
-            </div>
-
-            <div class="card">
-                <h3 class="card-title">🖥️ Статус сервера</h3>
-                <div class="server-status-block">
-                    <div class="status-item">
-                        <span class="status-label">Сервер:</span>
-                        <span class="status-value" id="server-online-status">Загрузка…</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">Карта:</span>
-                        <span class="status-value mono" id="server-map">—</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">Игроки:</span>
-                        <span class="status-value" id="server-players">—</span>
-                    </div>
-                </div>
             </div>
 
             <div class="card">
@@ -171,8 +153,6 @@
 
 <script>
 // ================== НАСТРОЙКИ ==================
-// ranks.json и server-status.json лежат в корне того же репозитория,
-// что и сайт — грузим относительным путём, без CORS.
 const LS_KEY = 'zentrax_my_steamid';
 
 // ================== ЧЕЙ ПРОФИЛЬ ПОКАЗАТЬ ==================
@@ -190,17 +170,6 @@ async function loadRanks() {
         throw new Error('ranks.json имеет неверный формат');
     }
     return data;
-}
-
-async function loadServerStatus() {
-    try {
-        const res = await fetch('server-status.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return await res.json();
-    } catch (e) {
-        console.error('Ошибка статуса сервера:', e);
-        return null;
-    }
 }
 
 // ================== НОРМАЛИЗАЦИЯ STEAMID ==================
@@ -250,36 +219,9 @@ function xpToNext(data, me) {
     return Math.max(0, data.ranks[idx + 1].xp - me.xp);
 }
 
-// ================== СТАТУС СЕРВЕРА ==================
-function renderServerStatus(status) {
-    const onlineEl = document.getElementById('server-online-status');
-    const mapEl = document.getElementById('server-map');
-    const playersEl = document.getElementById('server-players');
-
-    if (!status) {
-        onlineEl.textContent = 'Неизвестно';
-        onlineEl.className = 'status-value status-offline';
-        mapEl.textContent = '—';
-        playersEl.textContent = '—';
-        return;
-    }
-
-    if (status.online) {
-        onlineEl.textContent = 'Онлайн';
-        onlineEl.className = 'status-value status-online';
-    } else {
-        onlineEl.textContent = 'Офлайн';
-        onlineEl.className = 'status-value status-offline';
-    }
-
-    mapEl.textContent = status.map || '—';
-    playersEl.textContent = status.maxPlayers > 0
-        ? (status.players + ' / ' + status.maxPlayers)
-        : '—';
-}
-
 // ================== ОТРИСОВКА ==================
 function render(data) {
+    // Топ игроков
     const tbody = document.getElementById('top-table');
     tbody.innerHTML = '';
     data.players.forEach(function(p, i) {
@@ -316,6 +258,7 @@ function render(data) {
             'Данные обновлены: ' + upd.toLocaleString('ru-RU');
     }
 
+    // Свой профиль без ID — форма ввода
     if (!targetId) {
         document.getElementById('rank-name').textContent = 'Укажи свой SteamID';
         document.getElementById('rank-xp-current').textContent = '';
@@ -328,6 +271,7 @@ function render(data) {
         return;
     }
 
+    // Поиск игрока
     const me = data.players.find(function(p) {
         return normalizeSteamId(p.steamId) === normalizeSteamId(targetId);
     });
@@ -339,6 +283,7 @@ function render(data) {
         return;
     }
 
+    // Левая карточка
     document.getElementById('profile-name').textContent = me.name;
     document.getElementById('profile-rank').textContent = me.rank;
     document.getElementById('stat-online').textContent = formatPlaytime(me.playtimeMinutes);
@@ -346,12 +291,14 @@ function render(data) {
     document.getElementById('stat-deaths').textContent = me.deaths;
     document.getElementById('stat-kd').textContent = Number(me.kd || 0).toFixed(2);
 
+    // Шапка и инфо
     document.title = 'ZENTRAX — ' + me.name;
     document.getElementById('header-name').textContent = me.name;
     document.getElementById('info-steamid').textContent = me.steamId;
     document.getElementById('info-lastseen').textContent = formatLastSeen(me.lastSeen);
     document.getElementById('info-rank').textContent = me.rank;
 
+    // Аватарка
     const avatarImg = document.getElementById('profile-avatar');
     const fallback = document.getElementById('avatar-fallback');
     if (me.avatar) {
@@ -363,6 +310,7 @@ function render(data) {
         fallback.style.display = 'flex';
     }
 
+    // Ссылка на Steam
     const steamLink = document.getElementById('info-steamlink');
     const placeholder = document.getElementById('steam-link-placeholder');
     if (me.profileUrl) {
@@ -374,12 +322,12 @@ function render(data) {
         placeholder.style.display = 'inline';
     }
 
+    // Прогресс
     document.getElementById('rank-name').textContent = me.rank;
     document.getElementById('rank-xp-current').textContent = me.xp + ' XP';
 
     const toNext = xpToNext(data, me);
-    const rankBar = document.getElementById('rank-bar');
-    rankBar.style.width = progressPercent(data, me) + '%';
+    document.getElementById('rank-bar').style.width = progressPercent(data, me) + '%';
 
     if (toNext === 0) {
         document.getElementById('rank-xp-next').textContent = 'Максимальное звание достигнуто!';
@@ -396,8 +344,6 @@ loadRanks()
         const el = document.getElementById('rank-name');
         if (el) el.textContent = 'Ошибка: ' + e.message;
     });
-
-loadServerStatus().then(renderServerStatus);
 </script>
 </body>
 </html>
