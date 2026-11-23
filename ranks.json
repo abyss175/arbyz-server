@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T20:33:01.332Z",
+  "updated": "2026-11-23T20:38:01.402Z",
   "ranks": [
     {
       "name": "None",
@@ -80,20 +80,6 @@
   ],
   "players": [
     {
-      "steamId": "76561199783123219",
-      "name": "abyss175",
-      "kills": 0,
-      "deaths": 0,
-      "playtimeMinutes": 0,
-      "online": true,
-      "lastSeen": "2026-11-23T20:32:56.000Z",
-      "xp": 100,
-      "kd": 0,
-      "rank": "Silver II",
-      "avatar": "https://avatars.steamstatic.com/bf251b42d11a028fdf466fa98fe369a2a29b50fd_full.jpg",
-      "profileUrl": "https://steamcommunity.com/profiles/76561199783123219/"
-    },
-    {
       "steamId": "76561199550252207",
       "name": "Просто Панда",
       "kills": 29,
@@ -134,6 +120,20 @@
       "rank": "Silver I",
       "avatar": "https://avatars.steamstatic.com/49b0ee0a1d80ecf5cf82a69797f3fc2c2c6136e2_full.jpg",
       "profileUrl": "https://steamcommunity.com/profiles/76561198712852604/"
+    },
+    {
+      "steamId": "76561199783123219",
+      "name": "abyss175",
+      "kills": 0,
+      "deaths": 2,
+      "playtimeMinutes": 5,
+      "online": true,
+      "lastSeen": "2026-11-23T20:37:51.000Z",
+      "xp": 60,
+      "kd": 0,
+      "rank": "Silver I",
+      "avatar": "https://avatars.steamstatic.com/bf251b42d11a028fdf466fa98fe369a2a29b50fd_full.jpg",
+      "profileUrl": "https://steamcommunity.com/profiles/76561199783123219/"
     },
     {
       "steamId": "76561198723201507",
