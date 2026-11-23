@@ -154,11 +154,15 @@ async function loadRanks() {
 }
 
 // ================== НОРМАЛИЗАЦИЯ STEAMID ==================
+// STEAM_1:1:794993239  <->  76561199xxxxxxxxx
 function normalizeSteamId(v) {
     let s = String(v ?? '').trim();
     if (s.startsWith('STEAM_')) {
-        const m = s.match(/STEAM_\d:():(\d+)/);
-        if (m) return String(BigInt('76561197960265728') + BigInt(m) * 2n + BigInt(m));
+        const m = s.match(/STEAM_\d:([01]):(\d+)/);
+        if (m) {
+            const accountId = BigInt(m[2]) * 2n + BigInt(m[1]);
+            return String(BigInt('76561197960265728') + accountId);
+        }
     }
     return s;
 }
@@ -167,7 +171,7 @@ function normalizeSteamId(v) {
 function formatPlaytime(m) {
     if (!m || m <= 0) return '0 м';
     const h = Math.floor(m / 60);
-    return h > 0 ? `${h} ч ${m % 60} м` : `\${m} м`;
+    return h > 0 ? h + ' ч ' + (m % 60) + ' м' : m + ' м';
 }
 function formatLastSeen(v) {
     if (!v) return '—';
@@ -197,14 +201,14 @@ function render(data) {
         const tr = document.createElement('tr');
         const pId = normalizeSteamId(p.steamId);
         if (targetId && pId === normalizeSteamId(targetId)) tr.classList.add('me');
-        tr.innerHTML = `
-            <td>\${i + 1}</td>
-            <td><a href="${SITE_URL}?steamid=${encodeURIComponent(pId)}">\${p.name}</a></td>
-            <td>\${p.rank}</td>
-            <td>\${p.xp}</td>
-            <td>\${p.kd.toFixed(2)}</td>
-            <td><span class="status-badge ${p.online ? 'status-online' : 'status-offline'}">${p.online ? 'Онлайн' : 'Офлайн'}</span></td>
-        `;
+        tr.innerHTML =
+            '<td>' + (i + 1) + '</td>' +
+            '<td><a href="' + SITE_URL + '?steamid=' + encodeURIComponent(pId) + '">' + p.name + '</a></td>' +
+            '<td>' + p.rank + '</td>' +
+            '<td>' + p.xp + '</td>' +
+            '<td>' + p.kd.toFixed(2) + '</td>' +
+            '<td><span class="status-badge ' + (p.online ? 'status-online' : 'status-offline') + '">' +
+                (p.online ? 'Онлайн' : 'Офлайн') + '</span></td>';
         tbody.appendChild(tr);
     });
 
@@ -212,7 +216,7 @@ function render(data) {
     document.getElementById('updated-note').textContent =
         'Данные обновлены: ' + upd.toLocaleString('ru-RU');
 
-    // 2. Свой профиль: если ID не задан — показываем форму, таблица уже отрисована
+    // 2. Свой профиль: если ID не задан — показываем форму
     if (!targetId) {
         document.getElementById('rank-name').textContent = 'Укажи свой SteamID';
         document.getElementById('rank-xp-current').textContent = '';
@@ -244,7 +248,7 @@ function render(data) {
     document.getElementById('stat-kd').textContent = me.kd.toFixed(2);
 
     // Шапка и инфо
-    document.title = `ZENTRAX — \${me.name}`;
+    document.title = 'ZENTRAX — ' + me.name;
     document.getElementById('header-name').textContent = me.name;
     document.getElementById('info-steamid').textContent = me.steamId;
     document.getElementById('info-lastseen').textContent = formatLastSeen(me.lastSeen);
@@ -252,10 +256,10 @@ function render(data) {
 
     // Активность и прогресс
     document.getElementById('rank-name').textContent = me.rank;
-    document.getElementById('rank-xp-current').textContent = `\${me.xp} XP`;
+    document.getElementById('rank-xp-current').textContent = me.xp + ' XP';
     const toNext = xpToNext(data, me);
     document.getElementById('rank-xp-next').textContent =
-        toNext > 0 ? `До следующего: \${toNext} XP` : 'Максимальное звание достигнуто!';
+        toNext > 0 ? 'До следующего: ' + toNext + ' XP' : 'Максимальное звание достигнуто!';
     document.getElementById('rank-bar').style.width = progressPercent(data, me) + '%';
 }
 
