@@ -24,94 +24,80 @@
 </header>
 
 <main class="page-container">
-    <div class="server-grid">
-        
-        <!-- ЛЕВАЯ КОЛОНКА: Действия и IP -->
-        <aside class="server-actions">
-            <div class="action-card">
-                <h2>ZENTRAX CS2</h2>
-                <p class="desc">Приватный сервер для клана и друзей</p>
-                
+    <div class="home-grid">
+
+        <!-- ЛЕВАЯ КОЛОНКА: карточка сервера -->
+        <aside class="profile-sidebar">
+            <div class="server-icon-big">🛡️</div>
+            <h2 class="profile-name">ZENTRAX CS2</h2>
+            <div class="server-desc">Приватный сервер для клана и друзей</div>
+
+            <div class="status-rows">
                 <div class="status-row">
                     <span class="status-label">Статус:</span>
                     <span class="status-badge status-offline" id="server-status">Сервер офлайн</span>
                 </div>
                 <div class="status-row">
                     <span class="status-label">Карта:</span>
-                    <span class="status-value" id="server-map">—</span>
+                    <span class="status-value" id="current-map">—</span>
                 </div>
                 <div class="status-row">
                     <span class="status-label">Игроков онлайн:</span>
-                    <span class="status-value bold" id="server-players">0</span>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="btn-primary" id="connect-btn" disabled>Подключиться</button>
-                    <button class="btn-secondary" id="copy-ip-btn">Скопировать IP</button>
-                </div>
-
-                <div class="ip-block">
-                    <p class="small-label">IP для консоли:</p>
-                    <code id="server-ip-code">26.217.63.96</code>
+                    <span class="status-value stat-kd" id="players-online">0</span>
                 </div>
             </div>
 
-            <div class="how-to-connect">
-                <h3>Как подключиться</h3>
-                <ol>
+            <div class="server-buttons">
+                <button class="btn-primary btn-connect" onclick="connectToServer()">▶ Подключиться</button>
+                <button class="btn-copy" onclick="copyConnect()">Скопировать connect</button>
+            </div>
+
+            <div class="ip-block">
+                <p class="small-label">IP для консоли:</p>
+                <code>26.217.63.96</code>
+            </div>
+        </aside>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <main class="profile-main">
+
+            <div class="card">
+                <h3 class="card-title">⚙ Как подключиться</h3>
+                <div class="connect-row">
+                    <code>connect 26.217.63.96</code>
+                    <button class="btn-copy" onclick="copyConnect()">Копировать</button>
+                </div>
+                <ol class="connect-steps">
                     <li>Запусти Counter-Strike 2</li>
                     <li>Открой консоль (~)</li>
                     <li>Введи команду <code>connect 26.217.63.96</code></li>
                     <li>Готово — добро пожаловать на сервер!</li>
                 </ol>
             </div>
-        </aside>
 
-        <!-- ПРАВАЯ КОЛОНКА: Статистика -->
-        <main class="server-stats">
-            <div class="stats-header">
-                <h2>Статистика сервера</h2>
-                <span class="hint">Данные обновляются автоматически</span>
+            <div class="card">
+                <h3 class="card-title">📊 Статистика сервера</h3>
+                <div class="stats-grid-wide">
+                    <div class="stat-box">
+                        <span class="stat-val" id="current-map-2">—</span>
+                        <span class="stat-label">Карта</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val" id="players-online-2">0</span>
+                        <span class="stat-label">Игроков онлайн</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val">27015</span>
+                        <span class="stat-label">Порт</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val">24/7</span>
+                        <span class="stat-label">Аптайм</span>
+                    </div>
+                </div>
+                <p class="updated-note" id="status-updated"></p>
             </div>
 
-            <div class="stats-grid-large">
-                <div class="stat-item-large">
-                    <div class="stat-number">0</div>
-                    <div class="stat-label">Игроков онлайн</div>
-                </div>
-                <div class="stat-item-large">
-                    <div class="stat-number">27015</div>
-                    <div class="stat-label">Порт сервера</div>
-                </div>
-                <div class="stat-item-large">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Аптайм</div>
-                </div>
-                <div class="stat-item-large">
-                    <div class="stat-number">1200+</div>
-                    <div class="stat-label">Сыгранных часов</div>
-                </div>
-            </div>
-
-            <div class="stats-table-wrapper">
-                <h3>Топ игроков по времени</h3>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Игрок</th>
-                            <th>Время в игре</th>
-                            <th>Статус</th>
-                        </tr>
-                    </thead>
-                    <tbody id="top-players-table">
-                        <!-- Сюда JS подгрузит данные -->
-                        <tr><td>1</td><td>abyss175</td><td>7 ч 52 м</td><td><span class="status-badge status-offline">Офлайн</span></td></tr>
-                        <tr><td>2</td><td>Player2</td><td>5 ч 10 м</td><td><span class="status-badge status-offline">Офлайн</span></td></tr>
-                        <tr><td>3</td><td>Player3</td><td>3 ч 45 м</td><td><span class="status-badge status-offline">Офлайн</span></td></tr>
-                    </tbody>
-                </table>
-            </div>
         </main>
     </div>
 </main>
@@ -120,13 +106,6 @@
     © 2026 ZENTRAX CS2 Server. Все права защищены.
 </footer>
 
-<script>
-    // Заглушка для демонстрации. В реальности сюда нужно подгрузить данные из status.json
-    document.getElementById('connect-btn').addEventListener('click', () => alert('Запуск подключения...'));
-    document.getElementById('copy-ip-btn').addEventListener('click', () => {
-        navigator.clipboard.writeText('26.217.63.96');
-        alert('IP скопирован!');
-    });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
