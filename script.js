@@ -46,78 +46,16 @@ fetch('status.json')
 // ============================================================
 // ВКЛАДКИ ПРОФИЛЯ (Активность / Достижения / Отзывы)
 // ============================================================
-function switchProfileTab(index) {
-    const buttons = document.querySelectorAll('.tab-btn');
-    const contents = document.querySelectorAll('.tab-content');
+document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabs = [...document.querySelectorAll('.tab')];
+        const panels = [...document.querySelectorAll('.tab-panel')];
+        if (!panels.length) return;
 
-    buttons.forEach((b, i) => b.classList.toggle('active', i === index));
-    contents.forEach((c, i) => c.classList.toggle('active', i === index));
-}
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-// ============================================================
-// ПОИСК ИГРОКА И ЗАПОЛНЕНИЕ ПРОФИЛЯ
-// ============================================================
-async function findPlayer() {
-    const inputEl = document.getElementById('player-input');
-    if (!inputEl) return;
-
-    const query = inputEl.value.trim().toLowerCase();
-    if (!query) return;
-
-    try {
-        const res = await fetch('players.json');
-        const players = await res.json();
-
-        const p = players.find(x =>
-            x.name.toLowerCase() === query || x.steamid === query
-        );
-
-        document.getElementById('not-found').style.display = 'none';
-        document.getElementById('profile').style.display = 'none';
-
-        if (!p) {
-            document.getElementById('not-found').style.display = 'block';
-            return;
-        }
-
-        document.getElementById('p-name').textContent = p.name;
-        document.getElementById('p-name-banner').textContent = p.name;
-        document.getElementById('p-steamid').textContent = p.steamid;
-
-        const seconds = p.playtimeSeconds || 0;
-        const hours = Math.floor(seconds / 3600);
-        const minutes = Math.floor((seconds % 3600) / 60);
-        document.getElementById('p-hours').textContent =
-            hours > 0 ? hours + ' ч ' + minutes + ' м' : minutes + ' м';
-
-        document.getElementById('p-kills').textContent = p.kills ?? 0;
-        document.getElementById('p-deaths').textContent = p.deaths ?? 0;
-        document.getElementById('p-kd').textContent =
-            p.deaths > 0 ? (p.kills / p.deaths).toFixed(2) : (p.kills || 0).toFixed(2);
-
-        if (p.firstSeen) {
-            document.getElementById('p-firstseen').textContent =
-                new Date(p.firstSeen).toLocaleDateString('ru-RU');
-        }
-        if (p.lastSeen) {
-            document.getElementById('p-lastseen').textContent =
-                new Date(p.lastSeen).toLocaleString('ru-RU');
-        }
-
-        document.getElementById('p-status').textContent = '✓ Замечаний нет';
-
-        document.getElementById('profile').style.display = 'grid';
-    } catch (e) {
-        console.error('Ошибка загрузки данных:', e);
-        document.getElementById('not-found').style.display = 'block';
-        const note = document.querySelector('#not-found .note');
-        if (note) note.textContent = 'Не удалось загрузить данные игроков.';
-    }
-}
-
-// ============================================================
-// ПОКУПКА VIP (магазин)
-// ============================================================
-function buyVip(tier) {
-    alert('Оплата VIP ' + tier + ':\n\nНапиши админу в Discord — укажи ник и тариф.');
-}
+        const index = tabs.indexOf(tab);
+        panels.forEach((p, i) => p.classList.toggle('active', i === index));
+    });
+});
