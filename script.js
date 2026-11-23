@@ -2,12 +2,11 @@
 // КОНФИГУРАЦИЯ (меняй тут)
 // ============================================================
 const SERVER_ADDR = '26.217.63.96:27015';
+
+// Рулетка: только ВХ и Невидимость (позже добавишь другие режимы)
 const ROULETTE_MODES = [
-    'Gravity (низкая гравитация)',
-    'Dash (рывок)',
-    'Hook (крюк)',
-    'ChaosMode',
-    'ZombieBalance'
+    'ВХ (WallHack)',
+    'Невидимость'
 ];
 
 // ============================================================
@@ -27,7 +26,7 @@ function copyConnect() {
 }
 
 // ============================================================
-// СТАТУС СЕРВЕРА (карта и онлайн)
+// СТАТУС СЕРВЕРА (карта и онлайн) — главная страница
 // ============================================================
 fetch('status.json')
     .then(res => {
@@ -55,9 +54,6 @@ fetch('status.json')
     })
     .catch(err => {
         console.warn('Не удалось загрузить status.json', err);
-        document.querySelectorAll('#current-map, #current-map-2, #players-online, #players-online-2').forEach(el => {
-            if (el) el.textContent = 'Статус неизвестен';
-        });
     });
 
 // ============================================================
@@ -77,21 +73,20 @@ function connectToServer() {
 // ============================================================
 // ВКЛАДКИ МАГАЗИНА
 // ============================================================
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.shop-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.shop-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            document.querySelectorAll('.shop-panel').forEach(p => {
-                p.style.display = p.id === tab.dataset.tab ? 'block' : 'none';
-                p.classList.toggle('active', p.id === tab.dataset.tab);
-            });
-        });
+document.querySelectorAll('.shop-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.shop-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        document.querySelectorAll('.shop-panel').forEach(p => p.style.display = 'none');
+
+        const targetPanel = document.getElementById(tab.getAttribute('data-tab'));
+        if (targetPanel) targetPanel.style.display = 'block';
     });
 });
 
 // ============================================================
-// РУЛЕТКА РАНДОМНОГО РЕЖИМА
+// РУЛЕТКА РАНДОМНОГО РЕЖИМА (только ВХ и Невидимость)
 // ============================================================
 let rouletteBusy = false;
 
@@ -107,16 +102,14 @@ function spinRoulette() {
 
     rouletteBusy = true;
     btn.disabled = true;
-    btn.style.opacity = '0.6';
-    btn.style.cursor = 'not-allowed';
 
     result.textContent = '';
     buyBtn.style.display = 'none';
     reel.classList.add('spinning');
 
-    const icons = ['🎰', '👁️', '👻', '🚀', '⚡', '🎰'];
+    const icons = ['🎰', '👁️', '👻', '🎰', '👁️', '👻'];
     let ticks = 0;
-    const totalTicks = 24;
+    const totalTicks = 20;
 
     const interval = setInterval(() => {
         reel.textContent = icons[ticks % icons.length];
@@ -126,24 +119,16 @@ function spinRoulette() {
             reel.classList.remove('spinning');
 
             const winner = ROULETTE_MODES[Math.floor(Math.random() * ROULETTE_MODES.length)];
-            // Простая логика иконки по режиму
-            let icon = '🎰';
-            if (winner.includes('Gravity')) icon = '🚀';
-            else if (winner.includes('Dash')) icon = '⚡';
-            else if (winner.includes('Hook')) icon = '🪝';
-            else if (winner.includes('Chaos')) icon = '🔥';
-            else if (winner.includes('Zombie')) icon = '🧟';
+            const icon = winner.includes('ВХ') ? '👁️' : '👻';
 
             reel.textContent = icon;
             result.textContent = 'Выпало: ' + winner;
 
             buyBtn.style.display = 'block';
             btn.disabled = false;
-            btn.style.opacity = '1';
-            btn.style.cursor = 'pointer';
             rouletteBusy = false;
 
             setTimeout(() => { result.textContent = ''; }, 15000);
         }
-    }, 80); // Чуть быстрее, чтобы выглядело динамичнее
+    }, 120);
 }
