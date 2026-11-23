@@ -1,8 +1,20 @@
 // ============================================================
-// КОПИРОВАНИЕ КОМАНДЫ CONNECT (главная страница)
+// КОНФИГУРАЦИЯ (меняй тут)
+// ============================================================
+const SERVER_ADDR = '26.217.63.96:27015';
+const ROULETTE_MODES = [
+    'Gravity (низкая гравитация)',
+    'Dash (рывок)',
+    'Hook (крюк)',
+    'ChaosMode',
+    'ZombieBalance'
+];
+
+// ============================================================
+// КОПИРОВАНИЕ КОМАНДЫ CONNECT
 // ============================================================
 function copyConnect() {
-    const command = 'connect 26.217.63.96';
+    const command = 'connect ' + SERVER_ADDR;
     navigator.clipboard.writeText(command)
         .then(() => {
             document.querySelectorAll('.btn-copy').forEach(btn => {
@@ -15,7 +27,7 @@ function copyConnect() {
 }
 
 // ============================================================
-// СТАТУС СЕРВЕРА (карта и онлайн) — главная страница
+// СТАТУС СЕРВЕРА (карта и онлайн)
 // ============================================================
 fetch('status.json')
     .then(res => {
@@ -41,21 +53,97 @@ fetch('status.json')
             timeEl.textContent = 'Обновлено: ' + new Date(data.updated).toLocaleString('ru-RU');
         }
     })
-    .catch(() => {});
+    .catch(err => {
+        console.warn('Не удалось загрузить status.json', err);
+        document.querySelectorAll('#current-map, #current-map-2, #players-online, #players-online-2').forEach(el => {
+            if (el) el.textContent = 'Статус неизвестен';
+        });
+    });
 
 // ============================================================
-// ВКЛАДКИ ПРОФИЛЯ (Активность / Достижения / Отзывы)
+// ПОДКЛЮЧЕНИЕ К СЕРВЕРУ КНОПКОЙ
 // ============================================================
-document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-        const tabs = [...document.querySelectorAll('.tab')];
-        const panels = [...document.querySelectorAll('.tab-panel')];
-        if (!panels.length) return;
+function connectToServer() {
+    navigator.clipboard.writeText('connect ' + SERVER_ADDR).catch(() => {});
+    window.location.href = 'steam://connect/' + SERVER_ADDR;
 
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+    document.querySelectorAll('.btn-connect').forEach(btn => {
+        const old = btn.textContent;
+        btn.textContent = 'Не подключило? → консоль: connect';
+        setTimeout(() => btn.textContent = old, 4000);
+    });
+}
 
-        const index = tabs.indexOf(tab);
-        panels.forEach((p, i) => p.classList.toggle('active', i === index));
+// ============================================================
+// ВКЛАДКИ МАГАЗИНА
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.shop-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.shop-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.shop-panel').forEach(p => {
+                p.style.display = p.id === tab.dataset.tab ? 'block' : 'none';
+                p.classList.toggle('active', p.id === tab.dataset.tab);
+            });
+        });
     });
 });
+
+// ============================================================
+// РУЛЕТКА РАНДОМНОГО РЕЖИМА
+// ============================================================
+let rouletteBusy = false;
+
+function spinRoulette() {
+    if (rouletteBusy) return;
+
+    const reel = document.getElementById('roulette-reel');
+    const result = document.getElementById('roulette-result');
+    const buyBtn = document.getElementById('roulette-buy');
+    const btn = document.querySelector('.btn-roulette');
+
+    if (!reel || !result || !buyBtn || !btn) return;
+
+    rouletteBusy = true;
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.style.cursor = 'not-allowed';
+
+    result.textContent = '';
+    buyBtn.style.display = 'none';
+    reel.classList.add('spinning');
+
+    const icons = ['🎰', '👁️', '👻', '🚀', '⚡', '🎰'];
+    let ticks = 0;
+    const totalTicks = 24;
+
+    const interval = setInterval(() => {
+        reel.textContent = icons[ticks % icons.length];
+        ticks++;
+        if (ticks >= totalTicks) {
+            clearInterval(interval);
+            reel.classList.remove('spinning');
+
+            const winner = ROULETTE_MODES[Math.floor(Math.random() * ROULETTE_MODES.length)];
+            // Простая логика иконки по режиму
+            let icon = '🎰';
+            if (winner.includes('Gravity')) icon = '🚀';
+            else if (winner.includes('Dash')) icon = '⚡';
+            else if (winner.includes('Hook')) icon = '🪝';
+            else if (winner.includes('Chaos')) icon = '🔥';
+            else if (winner.includes('Zombie')) icon = '🧟';
+
+            reel.textContent = icon;
+            result.textContent = 'Выпало: ' + winner;
+
+            buyBtn.style.display = 'block';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+            rouletteBusy = false;
+
+            setTimeout(() => { result.textContent = ''; }, 15000);
+        }
+    }, 80); // Чуть быстрее, чтобы выглядело динамичнее
+}
