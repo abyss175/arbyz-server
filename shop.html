@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин — ZENTRAX CS2</title>
+    <title>ZENTRAX — Магазин</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,18 +26,105 @@
 <main class="page-container">
 
     <div class="shop-header">
-        <h1>Магазин сервера ZENTRAX</h1>
-        <p>Привилегии, режимы и бонусы для комфортной игры на сервере.</p>
+        <h1>Магазин привилегий</h1>
+        <p>Выберите раздел, чтобы улучшить свой игровой опыт.</p>
     </div>
 
-    <!-- Навигация по вкладкам -->
-    <div class="tabs-bar">
-        <button class="shop-tab active" data-tab="tab-admin">Админка</button>
-        <button class="shop-tab" data-tab="tab-extra">Разное</button>
+    <!-- Вкладки -->
+    <div class="shop-tabs">
+        <button class="shop-tab active" data-tab="tab-vip">⭐ VIP</button>
+        <button class="shop-tab" data-tab="tab-admin">🛡️ Админка</button>
+        <button class="shop-tab" data-tab="tab-extra">🎲 Разное</button>
+    </div>
+
+    <!-- ============ VIP ============ -->
+    <div class="shop-panel active" id="tab-vip">
+        <div class="cards-container">
+
+            <div class="card tier-card card-bronze">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Bronze</span>
+                    <span class="price">9 ₽ <span class="price-period">/ 7 дней</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>105 HP</b></li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-gold">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Gold</span>
+                    <span class="price">29 ₽ <span class="price-period">/ 7 дней · 49 ₽ / 30 дней</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.05 скорость</b></li>
+                    <li><b>110 HP</b></li>
+                    <li><b>50 брони</b></li>
+                    <li>Шприц — 1 шт.</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-diamond">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Diamond</span>
+                    <span class="price">79 ₽ <span class="price-period">/ 7 дней · 119 ₽ / 30 дней · 199 ₽ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.1 скорость</b></li>
+                    <li><b>115 HP</b></li>
+                    <li><b>100 брони</b></li>
+                    <li>Шприцы — 2 шт.</li>
+                    <li>Респавн — 1</li>
+                    <li>Вампиризм — 5</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-platinum">
+                <div class="card-header">
+                    <span class="rank-badge">VIP Platinum</span>
+                    <span class="price">129 ₽ <span class="price-period">/ 7 дней · 169 ₽ / 30 дней · 249 ₽ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.15 скорость</b></li>
+                    <li><b>125 HP</b></li>
+                    <li><b>150 брони</b></li>
+                    <li>Шприцы — 2 шт.</li>
+                    <li>Респавны — 2</li>
+                    <li>Вампиризм — 7</li>
+                    <li>Быстрая перезарядка</li>
+                    <li>Дефузы</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+            <div class="card tier-card card-god">
+                <div class="card-header">
+                    <span class="rank-badge">VIP God</span>
+                    <span class="price">239 ₽ <span class="price-period">/ 30 дней · 329 ₽ навсегда</span></span>
+                </div>
+                <ul class="card-body">
+                    <li><b>x1.3 скорость</b></li>
+                    <li><b>150 HP</b></li>
+                    <li><b>200 брони</b></li>
+                    <li>Шприцы — 2 шт.</li>
+                    <li>Респавны — 5</li>
+                    <li>Вампиризм — 10</li>
+                    <li>Быстрая перезарядка</li>
+                    <li>Дефузы</li>
+                    <li>Декой-телепорт</li>
+                    <li>Зевс</li>
+                </ul>
+                <a class="btn-buy" href="https://discord.gg/CcdP9nYEww" target="_blank">Купить</a>
+            </div>
+
+        </div>
     </div>
 
     <!-- ============ АДМИНКА ============ -->
-    <div class="shop-panel" id="tab-admin" style="display:block;">
+    <div class="shop-panel" id="tab-admin" style="display:none;">
         <div class="cards-container">
 
             <div class="card tier-card card-moder">
@@ -49,7 +136,7 @@
                     <li><b>Все команды админа</b></li>
                     <li><b>Убить игрока</b></li>
                     <li><b>Ударить игрока</b></li>
-                    <li>Фан-команды:</li>
+                    <li><b>Фан-команды:</b></li>
                     <li>Убрать оружие</li>
                     <li>Заморозить</li>
                     <li>Установить HP</li>
@@ -154,13 +241,16 @@
         </div>
     </div>
 
+    <div class="shop-note">
+        <p>💳 После покупки напиши админу в Discord — привилегия будет выдана в течение 15 минут.</p>
+    </div>
+
 </main>
 
 <footer class="site-footer">
-    <p>&copy; 2026 ZENTRAX CS2 Server. Все права защищены.</p>
+    © 2026 ZENTRAX CS2 Server. Все права защищены.
 </footer>
 
-<!-- Подключаем скрипт магазина и рулетки -->
 <script src="script.js"></script>
 </body>
 </html>
