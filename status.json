@@ -1,8 +1,8 @@
-
 {
-    "offline": false,
-    "map": "inner_city",
-    "players": 12,
-    "maxPlayers": 20,
-    "updated": "2026-11-22T18:00:00Z"
+  "map": null,
+  "players": 0,
+  "maxPlayers": 0,
+  "serverName": "ZENTRAX CS2",
+  "offline": true,
+  "updated": "2026-11-23T10:39:44.590Z"
 }
