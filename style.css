@@ -266,3 +266,18 @@ b { color: #fff; }
     .hero-buttons { justify-content: flex-start; }
     .shop-header h1 { font-size: 24px; }
 }
+.roulette-reel {
+    font-size: 48px;
+    transition: transform 0.1s linear;
+}
+.roulette-reel.spinning {
+    animation: spin 0.2s infinite linear;
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.btn-roulette:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
