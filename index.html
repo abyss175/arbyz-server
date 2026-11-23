@@ -90,7 +90,31 @@
         </nav>
     </div>
 </header>
-
+    
+<div class="status-panel-profile" style="
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #ccc;
+    font-size: 0.9em;
+">
+    <div>
+        <span style="margin-right: 12px;"><b>Сервер:</b> <span id="server-online-status">Загрузка...</span></span>
+        <span><b>Карта:</b> <span class="mono" id="server-map">—</span></span>
+    </div>
+    <a id="connect-btn-profile" href="steam://connect/ВАШ_IP_СЕРВЕРА:27015" style="
+        padding: 6px 16px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+    ">🎮 Подключиться</a>
+</div>
 <main class="page-container">
 
     <!-- Компактная панель статуса (старый стиль) -->
@@ -215,6 +239,46 @@
     document.getElementById('server-ip').textContent = SERVER_IP;
 
     loadServerStatus().then(renderServerStatus);
+</script>
+    <script>
+// ================== СТАТУС СЕРВЕРА НА СТРАНИЦЕ ПРОФИЛЯ ==================
+const SERVER_IP = 'ВАШ_IP_СЕРВЕРА:27015'; // <-- ОБЯЗАТЕЛЬНО замени на свой IP:порт
+
+async function loadServerStatusProfile() {
+    try {
+        const res = await fetch('server-status.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return await res.json();
+    } catch (e) {
+        console.error('Ошибка статуса сервера в профиле:', e);
+        return null;
+    }
+}
+
+function renderServerStatusProfile(status) {
+    const onlineEl = document.getElementById('server-online-status');
+    const mapEl = document.getElementById('server-map');
+
+    if (!status) {
+        onlineEl.textContent = 'Неизвестно';
+        onlineEl.style.color = '#f39c12';
+        mapEl.textContent = '—';
+        return;
+    }
+
+    if (status.online) {
+        onlineEl.textContent = 'Онлайн';
+        onlineEl.style.color = '#2ecc71';
+    } else {
+        onlineEl.textContent = 'Офлайн';
+        onlineEl.style.color = '#e74c3c';
+    }
+
+    mapEl.textContent = status.map || '—';
+}
+
+document.getElementById('connect-btn-profile').href = 'steam://connect/' + SERVER_IP;
+loadServerStatusProfile().then(renderServerStatusProfile);
 </script>
 </body>
 </html>
