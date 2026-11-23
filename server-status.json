@@ -1,8 +1,9 @@
 {
-  "online": true,
-  "name": "My CS2 Server",
-  "map": "mg_twisted_towers_course",
-  "players": 1,
-  "maxPlayers": 64,
-  "updated": "2026-11-23T20:36:00.729Z"
+  "online": false,
+  "name": null,
+  "map": null,
+  "players": 0,
+  "maxPlayers": 0,
+  "updated": "2026-11-23T20:38:03.776Z",
+  "error": "Сервер не отвечает (таймаут)"
 }
