@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENTRAX — Правила</title>
+    <title>ZENTRAX CS2 — Правила</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,39 +24,47 @@
 </header>
 
 <main class="page-container">
-
-    <div class="shop-header">
+    <article class="rules-page">
         <h1>Правила сервера</h1>
-        <p>Нарушение правил ведёт к муту или бану.</p>
-    </div>
+        <p class="intro-text">Нарушение правил ведёт к муту или бану.</p>
 
-    <div class="card">
-        <h3 class="card-title">⛔ Запрещено</h3>
-        <ul class="rules-list">
-            <li><b>Читы, софты и макросы</b> — бан навсегда</li>
-            <li><b>Оскорбление игроков и админов</b> — мут до 24 ч</li>
-            <li><b>Спам в чате и микрофоне</b> — мут до 1 ч</li>
-            <li><b>Тимкиллинг и помехи своим</b> — кик / бан до 1 дня</li>
-            <li><b>Реклама других серверов</b> — бан навсегда</li>
-        </ul>
-    </div>
+        <section class="rule-section">
+            <h2>❌ Запрещено</h2>
+            <ul class="rule-list">
+                <li><strong>Читы, софты и макросы</strong> — бан навсегда.</li>
+                <li><strong>Оскорбления игроков и админов</strong> — мут до 24 ч.</li>
+                <li><strong>Спам в чате и микрофоне</strong> — мут до 1 ч.</li>
+                <li><strong>Тимкиллинг и помехи своим</strong> — кик / бан до 1 дня.</li>
+                <li><strong>Реклама других серверов</strong> — бан навсегда.</li>
+            </ul>
+        </section>
 
-    <div class="card">
-        <h3 class="card-title">✅ Разрешено</h3>
-        <ul class="rules-list">
-            <li>Играть с русским чатом</li>
-            <li>Использовать любые тактики внутри игры</li>
-            <li>Дружественные споры в голосовом канале</li>
-            <li>Обращаться к админам за помощью</li>
-        </ul>
-    </div>
+        <!-- НОВЫЙ БЛОК: ПРАВИЛА ДЛЯ АДМИНОВ -->
+        <section class="rule-section admin-rules">
+            <h2>🛡️ Правила для администрации</h2>
+            <p class="intro-text">Администрация обязана соблюдать нейтралитет и действовать строго по регламенту.</p>
+            <ul class="rule-list">
+                <li><strong>Запрещено банить/мутить/кикать/убивать/издеваться над игроками</strong> без веской причины. <br><em>Наказание: на первый раз — предупреждение, на второй — снятие с админки.</em></li>
+                <li><strong>Обязательное предоставление отката нарушений.</strong> Если игрок пожаловался на действия админа, администратор обязан предоставить видео- или демо-откат инцидента в течение 24 часов.</li>
+                <li><strong>Запрещено использовать админ-права в личных целях</strong> (например, чтобы выиграть раунд или наказать врага).</li>
+            </ul>
+        </section>
 
+        <section class="rule-section">
+            <h2>✅ Разрешено</h2>
+            <ul class="rule-list">
+                <li>Играть с русским чатом.</li>
+                <li>Использовать любые тактики внутри игры.</li>
+                <li>Дружественные споры в голосовом канале.</li>
+                <li>Обращаться к админам за помощью.</li>
+            </ul>
+        </section>
+    </article>
 </main>
 
 <footer class="site-footer">
     © 2026 ZENTRAX CS2 Server. Все права защищены.
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
