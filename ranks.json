@@ -1,138 +1,95 @@
 {
-  "updated": "2026-11-23T10:21:47.169Z",
+  "updated": "2026-11-23T18:56:23.293Z",
   "ranks": [
-    {
-      "name": "The Global Elite",
-      "xp": 4500
-    },
-    {
-      "name": "Supreme",
-      "xp": 3400
-    },
-    {
-      "name": "Legendary Eagle Master",
-      "xp": 2900
-    },
-    {
-      "name": "Legendary Eagle",
-      "xp": 2600
-    },
-    {
-      "name": "BigStar",
-      "xp": 2100
-    },
-    {
-      "name": "Master Guardian Elite",
-      "xp": 1600
-    },
-    {
-      "name": "Master Guardian II",
-      "xp": 1400
-    },
-    {
-      "name": "Master Guardian I",
-      "xp": 1000
-    },
-    {
-      "name": "Gold Nova Master",
-      "xp": 900
-    },
-    {
-      "name": "Gold Nova III",
-      "xp": 800
-    },
-    {
-      "name": "Gold Nova II",
-      "xp": 700
-    },
-    {
-      "name": "Gold Nova I",
-      "xp": 600
-    },
-    {
-      "name": "Silver Elite Master",
-      "xp": 500
-    },
-    {
-      "name": "Silver Elite",
-      "xp": 400
-    },
-    {
-      "name": "Silver IV",
-      "xp": 300
-    },
-    {
-      "name": "Silver III",
-      "xp": 150
-    },
-    {
-      "name": "Silver II",
-      "xp": 100
-    },
-    {
-      "name": "Silver I",
-      "xp": 50
-    },
     {
       "name": "None",
       "xp": 0
+    },
+    {
+      "name": "Silver I",
+      "xp": 20
+    },
+    {
+      "name": "Silver II",
+      "xp": 60
+    },
+    {
+      "name": "Silver III",
+      "xp": 120
+    },
+    {
+      "name": "Silver IV",
+      "xp": 180
+    },
+    {
+      "name": "Silver Elite",
+      "xp": 240
+    },
+    {
+      "name": "Silver Elite Master",
+      "xp": 300
+    },
+    {
+      "name": "Gold Nova I",
+      "xp": 400
+    },
+    {
+      "name": "Gold Nova II",
+      "xp": 500
+    },
+    {
+      "name": "Gold Nova III",
+      "xp": 620
+    },
+    {
+      "name": "Gold Nova Master",
+      "xp": 750
+    },
+    {
+      "name": "Legendary Eagle",
+      "xp": 900
+    },
+    {
+      "name": "Legendary Eagle Master",
+      "xp": 1100
+    },
+    {
+      "name": "Supreme Master",
+      "xp": 1300
+    },
+    {
+      "name": "Global Elite",
+      "xp": 1600
     }
   ],
   "players": [
     {
-      "steamId": "STEAM_1:1:911428745",
+      "steamId": "76561199783123219",
       "name": "abyss175",
-      "xp": 553,
-      "rank": "Silver Elite Master",
       "kills": 55,
       "deaths": 45,
-      "kd": 1.22,
       "playtimeMinutes": 472,
-      "lastSeen": 1795429304
-    },
-    {
-      "steamId": "STEAM_1:1:794993239",
-      "name": "Просто Панда",
-      "xp": 66,
-      "rank": "Silver I",
-      "kills": 29,
-      "deaths": 52,
-      "kd": 0.56,
-      "playtimeMinutes": 223,
-      "lastSeen": 1795384889
-    },
-    {
-      "steamId": "STEAM_1:1:384233765",
-      "name": "Skot1na",
-      "xp": 63,
-      "rank": "Silver I",
-      "kills": 7,
-      "deaths": 16,
-      "kd": 0.44,
-      "playtimeMinutes": 49,
-      "lastSeen": 1793017320
-    },
-    {
-      "steamId": "STEAM_1:0:376293438",
-      "name": "ःкиберкот",
-      "xp": 61,
-      "rank": "Silver I",
-      "kills": 3,
-      "deaths": 37,
-      "kd": 0.08,
-      "playtimeMinutes": 48,
-      "lastSeen": 1793462313
-    },
-    {
-      "steamId": "STEAM_1:1:381467889",
-      "name": "Betmen",
-      "xp": 2,
+      "online": true,
+      "lastSeen": null,
+      "xp": 460,
+      "kd": 1.22,
       "rank": "None",
-      "kills": 44,
-      "deaths": 131,
-      "kd": 0.34,
-      "playtimeMinutes": 648,
-      "lastSeen": 1795377294
+      "avatar": "https://avatars.steamstatic.com/bf251b42d11a028fdf466fa98fe369a2a29b50fd_full.jpg",
+      "profileUrl": "https://steamcommunity.com/profiles/76561199783123219/"
+    },
+    {
+      "steamId": "76561198207179306",
+      "name": "Player2",
+      "kills": 30,
+      "deaths": 20,
+      "playtimeMinutes": 120,
+      "online": false,
+      "lastSeen": null,
+      "xp": 260,
+      "kd": 1.5,
+      "rank": "None",
+      "avatar": null,
+      "profileUrl": null
     }
   ]
 }
