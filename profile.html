@@ -26,10 +26,10 @@
 <main class="page-container">
     <div class="profile-wrapper">
 
-        <!-- Левая колонка: аватар и базовая статистика -->
+        <!-- Левая колонка -->
         <aside class="profile-sidebar">
             <div class="avatar-wrapper">
-                <img id="profile-avatar" class="avatar-img" alt="" 
+                <img id="profile-avatar" class="avatar-img" alt=""
                      onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';">
                 <div class="avatar-icon" id="avatar-fallback" style="display:none;">👤</div>
             </div>
@@ -56,8 +56,9 @@
             </div>
         </aside>
 
-        <!-- Правая колонка: подробная информация и прогресс -->
+        <!-- Правая колонка -->
         <main class="profile-main">
+
             <div class="card card-header">
                 <div class="server-badge">
                     <span class="badge-icon">🛡️</span>
@@ -93,10 +94,10 @@
                 <h3 class="card-title">📈 Прогресс и активность</h3>
 
                 <div class="rank-block">
-                    <div class="rank-name" id="rank-name">—</div>
+                    <div class="rank-name" id="rank-name">Загрузка…</div>
                     <div class="rank-xp-row">
-                        <div class="rank-xp-current" id="rank-xp-current">0 XP</div>
-                        <div class="rank-xp-next" id="rank-xp-next">До следующего: — XP</div>
+                        <div class="rank-xp-current" id="rank-xp-current"></div>
+                        <div class="rank-xp-next" id="rank-xp-next"></div>
                     </div>
                     <div class="progress-bar-container">
                         <div class="progress-bar" id="rank-bar"></div>
@@ -116,25 +117,39 @@
                                 <th>Статус</th>
                             </tr>
                         </thead>
-                        <tbody id="top-table">
-                            <!-- Сюда JS вставит строки -->
-                        </tbody>
+                        <tbody id="top-table"></tbody>
                     </table>
-                    <div id="updated-note" style="margin-top: 10px; font-size: 12px; color: var(--muted);">Данные обновлены: —</div>
+                    <div class="hint">Нажми на имя игрока, чтобы открыть его профиль</div>
+                    <div id="updated-note" class="updated-note">Данные обновлены: —</div>
                 </div>
             </div>
+
+            <!-- Форма «Кто ты?» — показывается, если SteamID не задан -->
+            <div id="id-setup" class="card" style="display:none;">
+                <h3 class="card-title">🔑 Кто ты?</h3>
+                <div class="id-form">
+                    <input type="text" id="steamid-input" placeholder="Введи свой SteamID (76561... или STEAM_1:...)" />
+                    <button id="save-steamid" class="btn-primary">Сохранить</button>
+                </div>
+                <div class="hint">Достаточно ввести один раз — браузер запомнит.</div>
+            </div>
+
         </main>
     </div>
 </main>
 
+<footer class="site-footer">
+    © 2026 ZENTRAX CS2 Server. Все права защищены.
+</footer>
+
 <script>
 // ================== НАСТРОЙКИ ==================
-const REPO = 'abyss175/arbyz-server'; // owner/repo
+const REPO = 'abyss175/arbyz-server';
 const BRANCH = 'main';
 const SITE_URL = 'https://abyss175.github.io/arbyz-server/profile.html';
 const LS_KEY = 'zentrax_my_steamid';
 
-// ================== ОПРЕДЕЛЯЕМ, ЧЕЙ ПРОФИЛЬ ПОКАЗАТЬ ==================
+// ================== ЧЕЙ ПРОФИЛЬ ПОКАЗАТЬ ==================
 const params = new URLSearchParams(window.location.search);
 let targetId = params.get('steamid');
 const isMyProfile = !targetId;
@@ -142,19 +157,20 @@ if (!targetId) targetId = localStorage.getItem(LS_KEY);
 
 // ================== ЗАГРУЗКА ДАННЫХ ==================
 async function loadRanks() {
-    const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/ranks.json`;
+    const url = 'https://raw.githubusercontent.com/' + REPO + '/' + BRANCH + '/ranks.json';
     const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error('ranks.json не найден (HTTP ' + res.status + ')');
     return res.json();
 }
 
 // ================== НОРМАЛИЗАЦИЯ STEAMID ==================
+// STEAM_1:1:911428745 <-> 76561199XXXXXXXXX
 function normalizeSteamId(v) {
-    let s = String(v ?? '').trim();
+    let s = String(v || '').trim();
     if (s.startsWith('STEAM_')) {
-        const m = s.match(/STEAM_\d:():(\d+)/);
+        const m = s.match(/STEAM_\d:([01]):(\d+)/);
         if (m) {
-            const accountId = BigInt(m) * 2n + BigInt(m); [2](https://genius.courses/wordpress-codex/%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-wp_schedule_event-%D0%B2-wordpress-%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B5-%D1%80%D1%83%D0%BA%D0%BE/)[1](https://docs.steamapis.com/ru/steam/user)
+            const accountId = BigInt(m[2]) * 2n + BigInt(m[1]);
             return String(BigInt('76561197960265728') + accountId);
         }
     }
@@ -191,44 +207,50 @@ function xpToNext(data, me) {
 
 // ================== ОТРИСОВКА ==================
 function render(data) {
-    // 1. Топ игроков
+    // 1. Топ игроков — рисуем всегда
     const tbody = document.getElementById('top-table');
     tbody.innerHTML = '';
-    data.players.forEach((p, i) => {
+    data.players.forEach(function(p, i) {
         const tr = document.createElement('tr');
         const pId = normalizeSteamId(p.steamId);
         if (targetId && pId === normalizeSteamId(targetId)) tr.classList.add('me');
 
-        const avatarHtml = p.avatar 
-            ? `<img class="mini-avatar" src="\${p.avatar}" alt="" onerror="this.style.display='none'">` 
-            : `<div class="mini-icon">👤</div>`;
+        const avatarHtml = p.avatar
+            ? '<img class="mini-avatar" src="' + p.avatar + '" alt="" onerror="this.style.display=\'none\'">'
+            : '<div class="mini-icon">👤</div>';
 
         const steamLinkHtml = p.profileUrl
-            ? `<a class="steam-link" href="\${p.profileUrl}" target="_blank" title="Профиль Steam">↗</a>`
+            ? ' <a class="steam-link" href="' + p.profileUrl + '" target="_blank" title="Профиль Steam">↗</a>'
             : '';
 
         tr.innerHTML =
-            `<td>\${i + 1}</td>` +
-            `<td class="player-cell">${avatarHtml}<a href="${SITE_URL}?steamid=${encodeURIComponent(pId)}">${p.name}</a>\${steamLinkHtml}</td>` +
-            `<td>\${p.rank}</td>` +
-            `<td>\${p.xp}</td>` +
-            `<td>\${p.kd.toFixed(2)}</td>` +
-            `<td><span class="status-badge ${p.online ? 'status-online' : 'status-offline'}">${p.online ? 'Онлайн' : 'Офлайн'}</span></td>`;
-        
+            '<td>' + (i + 1) + '</td>' +
+            '<td><span class="player-cell">' + avatarHtml +
+                '<a href="' + SITE_URL + '?steamid=' + encodeURIComponent(pId) + '">' + p.name + '</a>' +
+                steamLinkHtml +
+            '</span></td>' +
+            '<td>' + p.rank + '</td>' +
+            '<td>' + p.xp + '</td>' +
+            '<td>' + p.kd.toFixed(2) + '</td>' +
+            '<td><span class="status-badge ' + (p.online ? 'status-online' : 'status-offline') + '">' +
+                (p.online ? 'Онлайн' : 'Офлайн') + '</span></td>';
+
         tbody.appendChild(tr);
     });
 
     const upd = new Date(data.updated);
-    document.getElementById('updated-note').textContent =
-        'Данные обновлены: ' + upd.toLocaleString('ru-RU');
+    if (!isNaN(upd)) {
+        document.getElementById('updated-note').textContent =
+            'Данные обновлены: ' + upd.toLocaleString('ru-RU');
+    }
 
-    // 2. Форма ввода (если ID не задан)
+    // 2. Свой профиль: если ID не задан — форма
     if (!targetId) {
         document.getElementById('rank-name').textContent = 'Укажи свой SteamID';
         document.getElementById('rank-xp-current').textContent = '';
         document.getElementById('rank-xp-next').textContent = '';
         document.getElementById('id-setup').style.display = 'block';
-        document.getElementById('save-steamid').onclick = () => {
+        document.getElementById('save-steamid').onclick = function() {
             const val = normalizeSteamId(document.getElementById('steamid-input').value);
             if (val) { localStorage.setItem(LS_KEY, val); location.reload(); }
         };
@@ -236,11 +258,13 @@ function render(data) {
     }
 
     // 3. Ищем игрока
-    const me = data.players.find(p => normalizeSteamId(p.steamId) === normalizeSteamId(targetId));
+    const me = data.players.find(function(p) {
+        return normalizeSteamId(p.steamId) === normalizeSteamId(targetId);
+    });
     if (!me) {
         document.getElementById('rank-name').textContent = 'Профиль не найден в статистике';
         document.getElementById('rank-xp-current').textContent = '';
-        document.getElementById('rank-xp-next').textContent = 'Проверь SteamID — сыграй на сервере хотя бы один раунд, чтобы попасть в базу.';
+        document.getElementById('rank-xp-next').textContent = 'Проверь SteamID — сыграй на сервере хотя бы один раунд.';
         if (isMyProfile) document.getElementById('id-setup').style.display = 'block';
         return;
     }
@@ -257,8 +281,10 @@ function render(data) {
     document.title = 'ZENTRAX — ' + me.name;
     document.getElementById('header-name').textContent = me.name;
     document.getElementById('info-steamid').textContent = me.steamId;
-    
-    // Аватарка и ссылка на Steam
+    document.getElementById('info-lastseen').textContent = formatLastSeen(me.lastSeen);
+    document.getElementById('info-rank').textContent = me.rank;
+
+    // Аватарка
     const avatarImg = document.getElementById('profile-avatar');
     const fallback = document.getElementById('avatar-fallback');
     if (me.avatar) {
@@ -270,6 +296,7 @@ function render(data) {
         fallback.style.display = 'flex';
     }
 
+    // Ссылка на Steam
     const steamLink = document.getElementById('info-steamlink');
     const placeholder = document.getElementById('steam-link-placeholder');
     if (me.profileUrl) {
@@ -281,10 +308,7 @@ function render(data) {
         placeholder.style.display = 'inline';
     }
 
-    document.getElementById('info-lastseen').textContent = formatLastSeen(me.lastSeen);
-    document.getElementById('info-rank').textContent = me.rank;
-
-    // Активность и прогресс
+    // Прогресс
     document.getElementById('rank-name').textContent = me.rank;
     document.getElementById('rank-xp-current').textContent = me.xp + ' XP';
     const toNext = xpToNext(data, me);
@@ -293,20 +317,9 @@ function render(data) {
     document.getElementById('rank-bar').style.width = progressPercent(data, me) + '%';
 }
 
-// ================== АВТООБНОВЛЕНИЕ КАЖДЫЕ 5 МИНУТ ==================
-setInterval(async () => {
-    try {
-        const fresh = await loadRanks();
-        render(fresh);
-    } catch (e) {
-        console.warn('Фоновое обновление не удалось:', e.message);
-    }
-}, 5 * 60 * 1000);
-
-// ================== ЗАПУСК ==================
 loadRanks()
     .then(render)
-    .catch(e => {
+    .catch(function(e) {
         console.error('Ошибка загрузки статистики:', e);
         document.getElementById('rank-name').textContent = 'Не удалось загрузить статистику: ' + e.message;
     });
