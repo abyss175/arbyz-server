@@ -1,8 +1,8 @@
 {
   "online": true,
   "name": "My CS2 Server",
-  "map": "de_mirage",
-  "players": 1,
+  "map": "survival_mayhem",
+  "players": 6,
   "maxPlayers": 64,
-  "updated": "2026-11-24T16:16:02.051Z"
+  "updated": "2026-11-24T16:21:01.842Z"
 }
