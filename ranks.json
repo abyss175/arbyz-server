@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T12:21:02.572Z",
+  "updated": "2026-11-24T12:26:02.541Z",
   "ranks": [
     {
       "name": "None",
@@ -126,9 +126,9 @@
       "name": "abyss175",
       "kills": 0,
       "deaths": 2,
-      "playtimeMinutes": 20,
-      "online": true,
-      "lastSeen": "2026-11-24T12:20:58.000Z",
+      "playtimeMinutes": 22,
+      "online": false,
+      "lastSeen": "2026-11-24T12:22:48.000Z",
       "xp": 60,
       "kd": 0,
       "rank": "Silver I",
