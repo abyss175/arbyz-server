@@ -2,7 +2,7 @@
   "online": true,
   "name": "My CS2 Server",
   "map": "de_mirage",
-  "players": 10,
+  "players": 0,
   "maxPlayers": 64,
   "updated": "2026-11-24T10:11:01.638Z"
 }
