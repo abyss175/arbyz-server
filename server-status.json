@@ -1,8 +1,9 @@
 {
-  "online": true,
-  "name": "My CS2 Server",
-  "map": "de_mirage",
-  "players": 8,
-  "maxPlayers": 64,
-  "updated": "2026-11-24T16:46:01.387Z"
+  "online": false,
+  "name": null,
+  "map": null,
+  "players": 0,
+  "maxPlayers": 0,
+  "updated": "2026-11-24T16:51:04.425Z",
+  "error": "Сервер не отвечает (таймаут)"
 }
