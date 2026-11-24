@@ -1,8 +1,8 @@
 {
   "online": true,
   "name": "My CS2 Server",
-  "map": "twyxe_map_v20_s2",
-  "players": 1,
+  "map": "de_mirage_100changes",
+  "players": 4,
   "maxPlayers": 64,
-  "updated": "2026-11-24T16:31:01.401Z"
+  "updated": "2026-11-24T16:36:01.417Z"
 }
