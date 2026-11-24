@@ -1,8 +1,8 @@
 {
   "online": true,
   "name": "My CS2 Server",
-  "map": "survival_mayhem",
-  "players": 6,
+  "map": "mg_twisted_towers_course",
+  "players": 1,
   "maxPlayers": 64,
-  "updated": "2026-11-24T16:21:01.842Z"
+  "updated": "2026-11-24T16:26:01.406Z"
 }
