@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T15:56:02.048Z",
+  "updated": "2026-11-24T16:01:02.419Z",
   "ranks": [
     {
       "name": "None",
@@ -126,10 +126,10 @@
       "name": "abyss175",
       "kills": 0,
       "deaths": 2,
-      "playtimeMinutes": 32,
-      "online": false,
-      "lastSeen": "2026-11-24T12:40:35.000Z",
-      "xp": 60,
+      "playtimeMinutes": 36,
+      "online": true,
+      "lastSeen": "2026-11-24T16:00:46.000Z",
+      "xp": 52,
       "kd": 0,
       "rank": "Silver I",
       "avatar": "https://avatars.steamstatic.com/bf251b42d11a028fdf466fa98fe369a2a29b50fd_full.jpg",
