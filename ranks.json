@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24T16:51:02.105Z",
+  "updated": "2026-11-24T18:21:02.673Z",
   "ranks": [
     {
       "name": "None",
@@ -85,7 +85,7 @@
       "kills": 0,
       "deaths": 11,
       "playtimeMinutes": 83,
-      "online": true,
+      "online": false,
       "lastSeen": "2026-11-24T16:50:45.000Z",
       "xp": 106,
       "kd": 0,
