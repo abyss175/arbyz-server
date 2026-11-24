@@ -1,8 +1,8 @@
 {
   "online": true,
   "name": "My CS2 Server",
-  "map": "mg_serpentis_temple",
+  "map": "de_mirage",
   "players": 1,
   "maxPlayers": 64,
-  "updated": "2026-11-24T16:11:01.345Z"
+  "updated": "2026-11-24T16:16:02.051Z"
 }
