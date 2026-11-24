@@ -1,8 +1,8 @@
 {
   "online": true,
   "name": "My CS2 Server",
-  "map": "mg_twisted_towers_course",
+  "map": "twyxe_map_v20_s2",
   "players": 1,
   "maxPlayers": 64,
-  "updated": "2026-11-24T16:26:01.406Z"
+  "updated": "2026-11-24T16:31:01.401Z"
 }
